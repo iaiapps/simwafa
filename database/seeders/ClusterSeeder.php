@@ -13,11 +13,11 @@ class ClusterSeeder extends Seeder
      */
     public function run(): void
     {
-        // Cluster::create([
-        //     'name_cluster' => 'kelompok 1',
-        // ]);
-        // Cluster::create([
-        //     'name_cluster' => 'kelompok 2',
-        // ]);
+        Cluster::create([
+            'name_cluster' => 'kelompok 1',
+        ]);
+        Cluster::create([
+            'name_cluster' => 'kelompok 2',
+        ]);
     }
 }
