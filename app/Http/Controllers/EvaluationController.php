@@ -31,7 +31,7 @@ class EvaluationController extends Controller
             // dd($evaluation->avg('nilai'));
         }
         if ($request->grade_id == 0 || $request->grade_id == null) {
-            $students = Student::all();
+            $students = null;
         } else {
             $students = Student::where('grade_id', $request->grade_id)->get();
         }

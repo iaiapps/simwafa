@@ -10,7 +10,7 @@
                 <div class="col-6 mb-3">
                     <select name="grade_id" id="grade" class="form-select">
                         <option selected disabled>-- pilih kelas --</option>
-                        <option value="0">semua kelas</option>
+                        {{-- <option value="0">semua kelas</option> --}}
                         @foreach ($grades as $grade)
                             <option value="{{ $grade->id }}">{{ $grade->name_grade }}</option>
                         @endforeach
@@ -23,60 +23,69 @@
         </form>
     </div>
 
-    <div class="card p-3">
-        <div class="d-block">
-            <a href="{{ route('evaluation.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
+    {{-- @dd($students) --}}
+    @if ($students == null)
+        <div class="card p-3">
+            <p class="fs-5 text-center m-0">kelas belum dipilih</p>
         </div>
-        <div class="table-responsive">
-            <table id="" class="table table-bordered">
-                <thead>
-                    <tr>
-                        <th rowspan="2" class="text-center">No</th>
-                        <th rowspan="2" class="text-center">Siswa</th>
-                        <th rowspan="2" class="text-center">Kelas</th>
-                    </tr>
-                    <tr>
-                        @foreach ($data_komponen->sortBy('komponen_id') as $data)
-                            <th>{{ $data->komponen->name_komp }}</th>
-                        @endforeach
-
-                        <th class="text-center"> Rerata Nilai </th>
-                        <th class="text-center"> Action </th>
-                    </tr>
-                    <tr>
-                    </tr>
-                </thead>
-                <tbody>
-                    @forelse ($students as $student)
+    @else
+        <div class="card p-3">
+            <div class="d-block">
+                <a href="{{ route('evaluation.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
+            </div>
+            <div class="table-responsive">
+                <table id="" class="table table-bordered">
+                    <thead>
                         <tr>
-                            <td>{{ $loop->iteration }}</td>
-                            <td>{{ $student->name }}</td>
-                            <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
-                            @foreach ($student->evaluation->sortBy('komponen_id') as $i)
-                                <td>
-                                    {{-- {{ $i->komponen->name_komp }} : --}}
-                                    {{ $i->nilai }}
-                                </td>
+                            <th rowspan="2" class="text-center">No</th>
+                            <th rowspan="2" class="text-center">Siswa</th>
+                            <th rowspan="2" class="text-center">Kelas</th>
+                        </tr>
+                        <tr>
+                            @foreach ($data_komponen->sortBy('komponen_id') as $data)
+                                <th>{{ $data->komponen->name_komp }}</th>
                             @endforeach
-                            <td>{{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
-                            <td>
-                                <a href="{{ route('evaluation.show', $student->id) }}"
-                                    class="btn btn-warning btn-sm">detail</a>
-                            </td>
+
+                            <th class="text-center"> Rerata Nilai </th>
+                            <th class="text-center"> Action </th>
                         </tr>
-                    @empty
-                        @php
-                            $count = count($data_komponen);
-                        @endphp
                         <tr>
-                            <td colspan="{{ $count + 5 }}" class="text-center">kelas belum dipilih atau data tidak
-                                tersedia</td>
                         </tr>
-                    @endforelse
-                </tbody>
-            </table>
+                    </thead>
+                    <tbody>
+                        @forelse ($students as $student)
+                            <tr>
+                                <td>{{ $loop->iteration }}</td>
+                                <td>{{ $student->name }}</td>
+                                <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
+                                @foreach ($student->evaluation->sortBy('komponen_id') as $i)
+                                    <td>
+                                        {{-- {{ $i->komponen->name_komp }} : --}}
+                                        {{ $i->nilai }}
+                                    </td>
+                                @endforeach
+                                <td>{{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
+                                <td>
+                                    <a href="{{ route('evaluation.show', $student->id) }}"
+                                        class="btn btn-warning btn-sm">detail</a>
+                                </td>
+                            </tr>
+                        @empty
+                            @php
+                                $count = count($data_komponen);
+                            @endphp
+                            <tr>
+                                <td colspan="{{ $count + 5 }}" class="text-center">data tidak
+                                    tersedia</td>
+                            </tr>
+                        @endforelse
+                    </tbody>
+                </table>
+            </div>
         </div>
-    </div>
+
+    @endif
+
 
 
 @endsection
