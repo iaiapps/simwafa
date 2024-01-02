@@ -46,15 +46,6 @@
                                     </span>
                                 @enderror
                             </div>
-                            <div class="mb-3">
-                                <label for="email" class="form-label ">{{ __('Pilih Level') }}</label>
-                                <select class="form-select" name="level" required>
-                                    <option disabled>---pilih---</option>
-                                    <option value="admin">Admin</option>
-                                    <option value="walas">Wali Kelas</option>
-                                    <option value="guru">Guru</option>
-                                </select>
-                            </div>
                             <div class="my-4 px-5">
                                 <button type="submit" class="btn btn-primary d-block w-100">
                                     {{ __('Login') }}
