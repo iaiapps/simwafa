@@ -13,16 +13,19 @@
                         <th rowspan="2" class="text-center">Siswa</th>
                         <th rowspan="2" class="text-center">Kelas</th>
 
-                        {{-- @foreach ($data_komponen->sortBy('komponen_id') as $data)
+                        @foreach ($data_komponen->sortBy('komponen_id') as $data)
                             <th>{{ $data->komponen->name_komp }}</th>
-                        @endforeach --}}
-                        @php
+                        @endforeach
+
+
+
+                        {{-- @php
                             foreach ($students as $student) {
                                 $count = $student->evaluation->count();
                             }
-                        @endphp
+                        @endphp --}}
 
-                        <th colspan="{{ $count }}" class="text-center">Nilai</th>
+                        {{-- <th colspan="{{ $count }}" class="text-center">Nilai</th> --}}
                         <th class="text-center"> Rerata Nilai </th>
                         <th class="text-center"> Action </th>
                     </tr>
@@ -37,7 +40,7 @@
                             <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
                             @foreach ($student->evaluation->sortBy('komponen_id') as $i)
                                 <td>
-                                    {{ $i->komponen->name_komp }} :
+                                    {{-- {{ $i->komponen->name_komp }} : --}}
                                     {{ $i->nilai }}
                                 </td>
                             @endforeach
@@ -79,11 +82,6 @@
             $('#grade').select2({
                 theme: 'bootstrap-5'
             });
-
-            // dates('option');
-            // months('option');
-            // //You can change the startYear(1990) and endYear(2017)
-            // years('option', 2010, 2025);
         });
     </script>
 @endpush
