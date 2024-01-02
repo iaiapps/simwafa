@@ -54,7 +54,7 @@
                             <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
                             @foreach ($student->evaluation->sortBy('komponen_id') as $i)
                                 <td>
-                                    {{ $i->komponen->name_komp }} :
+                                    {{-- {{ $i->komponen->name_komp }} : --}}
                                     {{ $i->nilai }}
                                 </td>
                             @endforeach

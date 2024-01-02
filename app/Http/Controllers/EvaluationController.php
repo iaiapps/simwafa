@@ -115,7 +115,7 @@ class EvaluationController extends Controller
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
         $students = Student::where('cluster_id', $cluster_id)->get();
 
-        return view('teacher.evaluation.evalindex', compact('students', 'data_komponen'));
+        return view('teacher.evaluation.evalindex', compact('students', 'data_komponen', 'teacher'));
     }
 
     public function evalStudent(Request $request)

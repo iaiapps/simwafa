@@ -32,7 +32,6 @@ class HomeController extends Controller
         $teacher = Teacher::all();
         $student = Student::all();
 
-        // dd($user->roles()->first()->name);
         if ($user->hasRole('admin')) {
             return view('admin.home', compact('teacher', 'student'));
         } elseif ($user->hasRole(['walas', 'guru'])) {

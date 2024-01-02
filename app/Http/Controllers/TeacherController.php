@@ -94,20 +94,24 @@ class TeacherController extends Controller
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
+
+
         $cluster_id = $teacher->cluster->id;
         $students = Student::where('cluster_id', $cluster_id)->get();
         return view('teacher.guru.cluster', compact('students'));
     }
-
 
     // --- handle from role:walas page --- //
     public function studentGrade()
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
-        $grade_id = $teacher->grade->id;
-        $students = Student::where('grade_id', $grade_id)->get();
-        // dd($students);
-        return view('teacher.walas.grade', compact('students'));
+        if (isset($teacher->grade->id)) {
+            $grade_id = $teacher->grade->id;
+            $students = Student::where('grade_id', $grade_id)->get();
+        } else {
+            $students = null;
+        }
+        return view('teacher.walas.grade', compact('students', 'teacher'));
     }
 }

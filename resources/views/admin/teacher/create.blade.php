@@ -53,7 +53,8 @@
                                                 <select class="form-select" name="cluster_id[{{ $teacher->id }}]">
                                                     <option disabled selected>---pilih kelompok---</option>
                                                     @foreach ($clusters as $cluster)
-                                                        <option value="{{ $cluster->id }}">{{ $cluster->name }}</option>
+                                                        <option value="{{ $cluster->id }}">{{ $cluster->name_cluster }}
+                                                        </option>
                                                     @endforeach
                                                 </select>
                                             @else

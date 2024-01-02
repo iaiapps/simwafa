@@ -3,9 +3,6 @@
 @section('title', 'Dashboard')
 
 @section('content')
-
-    {{-- @dd(Auth::user()) --}}
-
     <div class="card rounded p-3">
         <p class="fs-4 text-center m-0">
             Selamat Datang di Sistem Informasi Penilaian Wafa SDIT Harapan Umat Jember

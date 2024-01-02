@@ -11,6 +11,9 @@
     @endif
     <div class="card mb-3">
         <div class="card-body">
+            <p class="text-center fs-5 mb-0 rounded">Buat penilaian siswa sesuai kelompok</p>
+            <hr class="mb-4">
+
             <form method="get" action="{{ route('student.evaluation') }}">
                 <div class="mb-3">
                     <label for="komponen_id" class="form-label">Pilih Komponen Penilaian</label>
@@ -44,7 +47,7 @@
                                 <tr>
                                     <th class="text-center">No</th>
                                     <th class="text-center">Siswa</th>
-                                    <th class="text-center">Kelas</th>
+                                    {{-- <th class="text-center">Kelas</th> --}}
                                     <th class="text-center">{{ $komponen_id->name_komp ?? 'Komponen belum dipilih' }}</th>
                                 </tr>
                             </thead>
@@ -58,7 +61,7 @@
                                         <td style="width: 25%"> <input id="name_student" type="text"
                                                 class="form-control bg-secondary-subtle" name="name_student"
                                                 value="{{ $student->name }}" readonly disabled> </td>
-                                        <td>{{ $student->grade->name_grade }}</td>
+                                        {{-- <td>{{ $student->grade->name_grade }}</td> --}}
                                         <td>
                                             <input id="nilai" type="number" class="form-control"
                                                 name="nilai[{{ $student->id }}]">

@@ -5,8 +5,10 @@
 @section('content')
 
     {{-- @dd(Auth::cluster()->hasRole('admin')) --}}
-    <a href="{{ route('cluster.create') }}" class="btn btn-primary mb-3">tambah kelompok</a>
-
+    {{-- <a href="{{ route('cluster.create') }}" class="btn btn-primary mb-3">tambah kelompok</a> --}}
+    <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createCluster">
+        Tambah kelompok
+    </button>
     <div class="card rounded p-3">
         <div class="table-responsive">
 
@@ -40,7 +42,7 @@
         </div>
     </div>
 
-
+    @include('admin.cluster.create')
 @endsection
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">

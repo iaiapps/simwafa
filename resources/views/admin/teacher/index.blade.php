@@ -7,7 +7,7 @@
     {{-- @dd(Auth::teacher()->hasRole('admin')) --}}
     {{-- <a href="{{ route('teacher.create') }}" class="btn btn-primary mb-3">tambah guru</a> --}}
     <div class="d-block">
-        <a href="{{ route('teacher.create') }}" class="btn btn-primary mb-3">set kelas dan kelompok</a>
+        <a href="{{ route('teacher.create') }}" class="btn btn-primary mb-3">Tentukan kelas dan kelompok</a>
     </div>
     <div class="card rounded p-3">
         <div class="table-responsive">

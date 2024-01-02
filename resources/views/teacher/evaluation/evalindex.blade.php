@@ -5,6 +5,10 @@
 @section('content')
 
     <div class="card p-3">
+
+        <p class="text-center fs-5 mb-0 rounded">Data nilai siswa : {{ $teacher->cluster->name_cluster }}</p>
+        <hr class="mb-4">
+
         <div class="table-responsive">
             <table id="" class="table table-bordered">
                 <thead>
@@ -16,8 +20,6 @@
                         @foreach ($data_komponen->sortBy('komponen_id') as $data)
                             <th>{{ $data->komponen->name_komp }}</th>
                         @endforeach
-
-
 
                         {{-- @php
                             foreach ($students as $student) {

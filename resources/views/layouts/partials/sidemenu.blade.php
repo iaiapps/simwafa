@@ -20,14 +20,7 @@
                             <span class="ms-2 d-none d-sm-inline">Home</span>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('user.index') }}"
-                            class="nav-link text-center text-sm-start text-white
-                    {{ Route::currentRouteName() == 'user.index' ? 'active' : '' }}">
-                            <i class="bi bi-person-gear menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">Master</span>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('grade.index') }}"
                             class="nav-link text-center text-sm-start text-white
@@ -45,6 +38,23 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('komponen.index') }}"
+                            class="nav-link text-center text-sm-start text-white
+                    {{ Route::currentRouteName() == 'komponen.index' ? 'active' : '' }}">
+                            <i class="bi bi-list-check menu-icon"></i>
+                            <span class="ms-2 d-none d-sm-inline">Komponen</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('stage.index') }}"
+                            class="nav-link text-center text-sm-start text-white
+                    {{ Route::currentRouteName() == 'stage.index' ? 'active' : '' }}">
+                            <i class="bi bi-graph-up-arrow menu-icon"></i>
+                            <span class="ms-2 d-none d-sm-inline">Jilid</span>
+                        </a>
+                    </li>
+
+                    <li class="nav-item">
                         <a href="{{ route('teacher.index') }}"
                             class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'teacher.index' ? 'active' : '' }}">
@@ -60,29 +70,20 @@
                             <span class="ms-2 d-none d-sm-inline">Siswa</span>
                         </a>
                     </li>
-
-                    <li class="nav-item">
-                        <a href="{{ route('komponen.index') }}"
-                            class="nav-link text-center text-sm-start text-white
-                    {{ Route::currentRouteName() == 'komponen.index' ? 'active' : '' }}">
-                            <i class="bi bi-list-check menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">Komponen</span>
-                        </a>
-                    </li>
-                    <li class="nav-item">
-                        <a href="{{ route('stage.index') }}"
-                            class="nav-link text-center text-sm-start text-white
-                    {{ Route::currentRouteName() == 'stage.index' ? 'active' : '' }}">
-                            <i class="bi bi-graph-up-arrow menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">stage</span>
-                        </a>
-                    </li>
                     <li class="nav-item">
                         <a href="{{ route('evaluation.index') }}"
                             class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'evaluation.index' ? 'active' : '' }}">
                             <i class="bi bi-journal-check menu-icon"></i>
                             <span class="ms-2 d-none d-sm-inline">Nilai Siswa</span>
+                        </a>
+                    </li>
+                    <li class="nav-item">
+                        <a href="{{ route('user.index') }}"
+                            class="nav-link text-center text-sm-start text-white
+                    {{ Route::currentRouteName() == 'user.index' ? 'active' : '' }}">
+                            <i class="bi bi-person-gear menu-icon"></i>
+                            <span class="ms-2 d-none d-sm-inline">Master</span>
                         </a>
                     </li>
                 </ul>
