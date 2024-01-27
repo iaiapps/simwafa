@@ -1,7 +1,8 @@
 @php
     $user = Auth::user();
     $role = $user->getRoleNames()->first();
-    // dd($role);
+
+    $akses = session()->get('akses');
 @endphp
 
 <aside id="sidebar" class="sidebar position-fixed d-sm-block d-none ">
@@ -89,7 +90,7 @@
                 </ul>
             @break
 
-            @case('walas' || 'guru')
+            @case('guru')
                 <ul class="nav nav-pills pb-2 navbar-nav-scroll flex-column ">
                     <li class="nav-item">
                         <a href="{{ route('home') }}"
@@ -99,44 +100,43 @@
                             <span class="ms-2 d-none d-sm-inline">Home</span>
                         </a>
                     </li>
-
-                    @if ($role == 'walas')
+                    @if ($akses == 'Wali Kelas')
                         <li class="nav-item">
                             <a href="{{ route('student.grade') }}"
                                 class="nav-link text-center text-sm-start text-white
-                    {{ Route::currentRouteName() == 'student.grade' ? 'active' : '' }}">
+                        {{ Route::currentRouteName() == 'student.grade' ? 'active' : '' }}">
                                 <i class="bi bi-people menu-icon"></i>
                                 <span class="ms-2 d-none d-sm-inline">Siswa</span>
                             </a>
                         </li>
-                    @endif
-
-                    <li class="nav-item">
-                        <a href="{{ route('student.cluster') }}"
-                            class="nav-link text-center text-sm-start text-white
+                    @elseif ($akses == 'Guru')
+                        <li class="nav-item">
+                            <a href="{{ route('student.cluster') }}"
+                                class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'student.cluster' ? 'active' : '' }}">
-                            <i class="bi bi-diagram-3 menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">Kelompok</span>
-                        </a>
-                    </li>
+                                <i class="bi bi-diagram-3 menu-icon"></i>
+                                <span class="ms-2 d-none d-sm-inline">Kelompok</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('eval.index') }}"
-                            class="nav-link text-center text-sm-start text-white
+                        <li class="nav-item">
+                            <a href="{{ route('eval.index') }}"
+                                class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'eval.index' ? 'active' : '' }}">
-                            <i class="bi bi-journal-check menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">Nilai</span>
-                        </a>
-                    </li>
+                                <i class="bi bi-journal-check menu-icon"></i>
+                                <span class="ms-2 d-none d-sm-inline">Nilai</span>
+                            </a>
+                        </li>
 
-                    <li class="nav-item">
-                        <a href="{{ route('student.evaluation') }}"
-                            class="nav-link text-center text-sm-start text-white
+                        <li class="nav-item">
+                            <a href="{{ route('student.evaluation') }}"
+                                class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'student.evaluation' ? 'active' : '' }}">
-                            <i class="bi bi-list-check menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">Penilaian</span>
-                        </a>
-                    </li>
+                                <i class="bi bi-list-check menu-icon"></i>
+                                <span class="ms-2 d-none d-sm-inline">Penilaian</span>
+                            </a>
+                        </li>
+                    @endif
                 </ul>
             @break
 

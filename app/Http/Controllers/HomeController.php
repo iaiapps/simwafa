@@ -38,4 +38,34 @@ class HomeController extends Controller
             return view('teacher.home', compact('teacher'));
         }
     }
+
+    // cek walas
+    public function walas()
+    {
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::where('user_id', $user_id)->where('grade_id', '!=', NULL)->first();
+        return $teacher;
+    }
+
+    // akses walas
+    public function changeAccess()
+    {
+        $teacher = $this->walas();
+        // dd($teacher);
+        if (isset($teacher)) {
+            if (session('akses') == 'Guru') {
+                session()->put([
+                    'akses' => 'Wali Kelas',
+                ]);
+                return redirect()->route('home')->with('msg', 'Berhasil Akses sebagai Wali Kelas');
+            } elseif (session('akses') == 'Wali Kelas') {
+                session()->put([
+                    'akses' => 'Guru',
+                ]);
+                return redirect()->route('home')->with('msg', 'Berhasil akses sebagai Guru');
+            }
+        } else {
+            return redirect()->route('home')->with('msg', 'Anda tidak punya akses Wali Kelas');
+        }
+    }
 }

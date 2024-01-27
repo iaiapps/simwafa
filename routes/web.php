@@ -1,5 +1,6 @@
 <?php
 
+use App\Http\Controllers\Auth\LoginController;
 use App\Models\Evaluation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
@@ -59,7 +60,7 @@ Route::middleware('auth')->group(function () {
         Route::put('assignstage', [StudentController::class, 'storeAssignStage'])->name('assign.stage');
     });
 
-    Route::middleware('role:guru|walas')->group(function () {
+    Route::middleware('role:guru')->group(function () {
         //dapatkan student cluster
         Route::get('student-cluster', [TeacherController::class, 'studentCluster'])->name('student.cluster');
 
@@ -71,5 +72,8 @@ Route::middleware('auth')->group(function () {
 
         // utk walas lihat siswa
         Route::get('student-grade', [TeacherController::class, 'studentGrade'])->name('student.grade');
+
+        // akses walas
+        Route::get('akses-walas', [HomeController::class, 'changeAccess'])->name('akses.walas');
     });
 });

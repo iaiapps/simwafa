@@ -3,11 +3,9 @@
 @section('title', 'Data Guru')
 
 @section('content')
-
-    {{-- @dd(Auth::teacher()->hasRole('admin')) --}}
-    {{-- <a href="{{ route('teacher.create') }}" class="btn btn-primary mb-3">tambah guru</a> --}}
     <div class="d-block">
-        <a href="{{ route('teacher.create') }}" class="btn btn-primary mb-3">Tentukan kelas dan kelompok</a>
+        <a href="{{ route('teacher.create', ['bagian' => 'grade']) }}" class="btn btn-primary mb-3">Tentukan Kelas</a>
+        <a href="{{ route('teacher.create', ['bagian' => 'cluster']) }}" class="btn btn-primary mb-3">Tentukan Kelompok</a>
     </div>
     <div class="card rounded p-3">
         <div class="table-responsive">

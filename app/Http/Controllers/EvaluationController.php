@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
+use Mockery\Generator\Parameter;
 
 class EvaluationController extends Controller
 {
@@ -104,28 +105,50 @@ class EvaluationController extends Controller
         //
     }
 
-    // --------------- handle from role:guru ---------------//
-    public function evalIndex(Request $request)
+
+    // ------------- jika guru belum ditentukan -------------//
+
+    public function teacherId()
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
-        $cluster_id = $teacher->cluster->id;
+        $cluster_id = $teacher->cluster_id;
+
+        // ini cara return lebih dari 1 parameter
+        return [$teacher, $cluster_id];
+    }
+
+    // --------------- handle from role:guru ---------------//
+    public function evalIndex()
+    {
+        // ini cara mengambil parameter dari function lain 
+        // yang memiliki lebih dari 1 Parameter
+        list($teacher, $cluster_id) = $this->teacherId();
+
+        if (isset($cluster_id)) {
+            $students = Student::where('cluster_id', $cluster_id)->get();
+        } else {
+            $students = null;
+        }
 
         $komponen_id = Komponen::get('id');
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
-        $students = Student::where('cluster_id', $cluster_id)->get();
 
         return view('teacher.evaluation.evalindex', compact('students', 'data_komponen', 'teacher'));
     }
 
     public function evalStudent(Request $request)
     {
-        $user_id = Auth::user()->id;
-        $teacher = Teacher::where('user_id', $user_id)->first();
-        $cluster_id = $teacher->cluster->id;
+        list($teacher, $cluster_id) = $this->teacherId();
+
+        if (isset($cluster_id)) {
+            $students = Student::where('cluster_id', $cluster_id)->get();
+        } else {
+            $students = null;
+        }
+
         $komponens = Komponen::all();
         $komponen_id = Komponen::where('id', $request->komponen_id)->get()->first();
-        $students = Student::where('cluster_id', $cluster_id)->get();
         return view('teacher.evaluation.evalcreate', compact('komponens', 'students', 'komponen_id'));
     }
 
@@ -156,7 +179,6 @@ class EvaluationController extends Controller
 
     public function evalStudentShow($id)
     {
-        // dd($id);
         $evaluations = Evaluation::where('student_id', $id)->orderBy('student_id')->get();
         return view('teacher.evaluation.evalshow', compact('evaluations'));
     }

@@ -25,14 +25,15 @@ class TeacherController extends Controller
     /**
      * Show the form for creating a new resource.
      */
-    public function create()
+    public function create(Request $request)
     {
+        $bagian = $request->bagian;
+
         $users = User::all();
         $grades = Grade::all();
         $clusters = Cluster::all();
         $teachers = Teacher::where('grade_id', '=', null)->orWhere('cluster_id', '=', null)->get();
-        // dd($teachers);
-        return view('admin.teacher.create', compact('users', 'grades', 'teachers', 'clusters'));
+        return view('admin.teacher.create', compact('users', 'grades', 'teachers', 'clusters', 'bagian'));
     }
 
     /**
@@ -44,13 +45,24 @@ class TeacherController extends Controller
         $grade_id = $request->grade_id;
         $cluster_id = $request->cluster_id;
 
+        // foreach ($teacher_id as $tid) {
+        //     Teacher::where('id', '=', $tid)->update([
+        //         'grade_id' => $grade_id[$tid],
+        //         'cluster_id' => $cluster_id[$tid]
+        //     ]);
+        // }
+        // dd($request->all());
         foreach ($teacher_id as $tid) {
-            Teacher::where('id', '=', $tid)->update([
-                'grade_id' => $grade_id[$tid],
-                'cluster_id' => $cluster_id[$tid]
-            ]);
+            if (isset($grade_id[$tid])) {
+                Teacher::where('id', '=', $tid)->update([
+                    'grade_id' => $grade_id[$tid]
+                ]);
+            } elseif (isset($cluster_id[$tid])) {
+                Teacher::where('id', '=', $tid)->update([
+                    'cluster_id' => $cluster_id[$tid]
+                ]);
+            }
         }
-
         return redirect()->route('teacher.index');
     }
 
@@ -89,23 +101,27 @@ class TeacherController extends Controller
         //
     }
 
-    // --- handle from role:guru page --- //
+    // --- handle from guru page --- //
     public function studentCluster()
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
-
-
-        $cluster_id = $teacher->cluster->id;
-        $students = Student::where('cluster_id', $cluster_id)->get();
+        // dd($teacher->cluster->id);
+        if (isset($teacher->cluster->id)) {
+            $cluster_id = $teacher->cluster->id;
+            $students = Student::where('cluster_id', $cluster_id)->get();
+        } else {
+            $students = null;
+        }
         return view('teacher.guru.cluster', compact('students'));
     }
 
-    // --- handle from role:walas page --- //
+    // --- handle from walas page --- //
     public function studentGrade()
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
+
         if (isset($teacher->grade->id)) {
             $grade_id = $teacher->grade->id;
             $students = Student::where('grade_id', $grade_id)->get();

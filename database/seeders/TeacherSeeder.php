@@ -13,13 +13,13 @@ class TeacherSeeder extends Seeder
      */
     public function run(): void
     {
-        Teacher::create([
-            'user_id' => '2',
-            'name' => 'walas',
-        ]);
+        // Teacher::create([
+        //     'user_id' => '2',
+        //     'name' => 'walas',
+        // ]);
 
         Teacher::create([
-            'user_id' => '3',
+            'user_id' => '2',
             'name' => 'guru',
         ]);
     }

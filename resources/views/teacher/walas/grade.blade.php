@@ -3,10 +3,7 @@
 @section('title', 'Data Siswa')
 
 @section('content')
-
-    {{-- @dd($students) --}}
     @if ($students == null)
-
         <div class="card p-3 text-center">
             <p class="fs-5">Anda belum ditetapkan sebagai Wali Kelas</p>
             <p>Hubungi Admin</p>
@@ -33,35 +30,35 @@
                         </tr>
                     </thead>
                     <tbody>
-                        @foreach ($students as $student)
+                        @forelse ($students as $student)
                             <tr>
                                 <td>{{ $student->id }}</td>
                                 <td>{{ $student->name }}</td>
                                 <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</td>
                                 <td>{{ $student->stage->name_stage ?? 'belum ditentukan' }}</td>
-                                {{-- @foreach ($student->evaluation->sortBy('komponen_id') as $i)
-                                <td>
-                                    {{ $i->komponen->name_komp }} :
-                                    {{ $i->nilai }}
-                                </td>
-                            @endforeach --}}
                                 <td>{{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
                                 <td>
                                     <a href="{{ route('student.evaluation.show', $student->id) }}"
                                         class="btn btn-warning btn-sm">detail</a>
                                 </td>
                             </tr>
-                        @endforeach
+                        @empty
+                            <tr>
+                                <td colspan="7" class="text-center">Siswa belum ada</td>
+                                <td class="d-none"></td>
+                                <td class="d-none"></td>
+                                <td class="d-none"></td>
+                                <td class="d-none"></td>
+                                <td class="d-none"></td>
+                                <td class="d-none"></td>
+                            </tr>
+                        @endforelse
                     </tbody>
                 </table>
             </div>
         </div>
-
-
     @endif
-
-
 @endsection
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">
