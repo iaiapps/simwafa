@@ -41,6 +41,14 @@ body {
 }
 
 @media (max-width: 768px) {
+    
+    /* small{
+        font-size: 0.3rem !important;
+    } */
+    .nav-link{
+        padding: 1px 0px !important;
+        margin: 5px 0px !important;
+    }
     .icon {
         width: 70px;
     }

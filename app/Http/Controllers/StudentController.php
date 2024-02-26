@@ -100,19 +100,21 @@ class StudentController extends Controller
     {
         $students = Student::where('cluster_id', null)->get();
         $clusters = Cluster::all();
-        return view('admin.student.assignCluster.assignCluster', compact('students', 'clusters'));
+        $stages = Stage::all();
+        return view('admin.student.assignCluster.assignCluster', compact('students', 'clusters', 'stages'));
     }
 
     public function storeAssignCluster(Request $request)
     {
-        // dd($request->all());
-        $cluster_id = $request->input('cluster_id');
-        $datas = $request->input('input');
+        $cluster_id = $request->cluster_id;
+        $datas = $request->input;
+        $stage_id = $request->stage_id;
         foreach ($datas as $data) {
             $id = $data['id'];
             if (isset($data['check'])  == 'on') {
                 Student::where('id', $id)->update([
                     'cluster_id' => $cluster_id,
+                    'stage_id' => $stage_id[$id]
                 ]);
             }
         }

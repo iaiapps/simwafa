@@ -27,7 +27,7 @@
                             <th scope="col">#</th>
                             <th scope="col">Check</th>
                             <th scope="col">Nama</th>
-
+                            <th scope="col">Kelompok</th>
                         </tr>
                     </thead>
                     <tbody>
@@ -40,7 +40,13 @@
                                     <input class="form-check-input" type="checkbox"
                                         name="input[{{ $student->id }}][check]">
                                 </td>
-                                <td class="w-75">{{ $student->name ?? 'belum ditentukan' }}</td>
+                                <td class="w-50">{{ $student->name ?? 'belum ditentukan' }}</td>
+                                <td><select class="form-select" name="stage_id[{{ $student->id }}]">
+                                        <option selected disabled readonly>--- pilih jilid ---</option>
+                                        @foreach ($stages as $stage)
+                                            <option value="{{ $stage->id }}">{{ $stage->name_stage }}</option>
+                                        @endforeach
+                                    </select></td>
                             </tr>
                         @endforeach
                     </tbody>
