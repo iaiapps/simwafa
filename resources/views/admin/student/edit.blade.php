@@ -41,17 +41,17 @@
                 <div class="row mb-3">
                     <label for="name" class="col-md-2 col-form-label">Nama Kelompok (Id)</label>
                     <div class="col-md-10">
-                        @if ($student->cluster)
+                        {{-- @if ($student->cluster)
                             <input type="text" class="form-control" disabled
                                 value="{{ $student->cluster->name_cluster }}">
-                        @else
-                            <select class="form-select" id="role" name="cluster_id">
-                                <option disabled selected>---pilih kelompok---</option>
-                                @foreach ($clusters as $cluster)
-                                    <option value="{{ $cluster->id }}">{{ $cluster->name_cluster }}</option>
-                                @endforeach
-                            </select>
-                        @endif
+                        @else --}}
+                        <select class="form-select" id="role" name="cluster_id">
+                            <option disabled selected>---pilih kelompok---</option>
+                            @foreach ($clusters as $cluster)
+                                <option value="{{ $cluster->id }}">{{ $cluster->name_cluster }}</option>
+                            @endforeach
+                        </select>
+                        {{-- @endif --}}
                     </div>
                 </div>
 
