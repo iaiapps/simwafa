@@ -98,7 +98,7 @@ class StudentController extends Controller
     // --- assign student cluster --- //
     public function assignCluster()
     {
-        $students = Student::where('cluster_id', null)->get();
+        $students = Student::where('cluster_id', null)->orWhere('stage_id', null)->get();
         $clusters = Cluster::all();
         $stages = Stage::all();
         return view('admin.student.assignCluster.assignCluster', compact('students', 'clusters', 'stages'));
