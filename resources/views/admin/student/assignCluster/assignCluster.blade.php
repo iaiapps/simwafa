@@ -4,7 +4,7 @@
 
 @section('content')
     <div class="card rounded p-3">
-        <form action="{{ route('assign.cluster') }}" method="POST">
+        <form id="form" action="{{ route('assign.cluster') }}" method="POST">
             @csrf
             @method('PUT')
             <div class="row mb-4">
@@ -45,7 +45,7 @@
                     </thead>
                     <tbody>
                         @foreach ($students as $student)
-                            <tr>
+                            <tr id="ready">
                                 <input type="text" value="{{ $student->id }}" name="input[{{ $student->id }}][id]"
                                     hidden>
                                 <td>{{ $student->id }}</td>
@@ -88,12 +88,20 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#table').DataTable({
-                "pageLength": 50
+
+            var table = $('#table').DataTable({
+                "pageLength": 50,
             });
+
+            $('#form').on('submit', function() {
+                table.search('').rows().nodes().page.len(-1).draw(false);
+
+            });
+
             $('#cluster').select2({
                 theme: 'bootstrap-5'
             });
+
         });
     </script>
 @endpush
