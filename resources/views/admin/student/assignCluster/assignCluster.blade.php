@@ -90,7 +90,7 @@
         $(document).ready(function() {
 
             var table = $('#table').DataTable({
-                "pageLength": 2,
+                "pageLength": 50,
             });
 
             $('#form').on('submit', function() {
