@@ -90,13 +90,32 @@
         $(document).ready(function() {
 
             var table = $('#table').DataTable({
-                "pageLength": 50,
+                "pageLength": 2,
             });
 
             $('#form').on('submit', function() {
-                table.search('').rows().nodes().page.len(-1).draw(false);
-
+                // ini untuk mengatasi datatable yang hidden 
+                // baik pagination atau search
+                // denagan tipe checkboxes
+                // Iterate over all checkboxes in the table
+                var form = this;
+                table.$('input[type="checkbox"]').each(function() {
+                    // If checkbox doesn't exist in DOM
+                    if (!$.contains(document, this)) {
+                        // If checkbox is checked
+                        if (this.checked) {
+                            // Create a hidden element 
+                            $(form).append(
+                                $('<input>')
+                                .attr('type', 'hidden')
+                                .attr('name', this.name)
+                                .val(this.value)
+                            );
+                        }
+                    }
+                });
             });
+
 
             $('#cluster').select2({
                 theme: 'bootstrap-5'
