@@ -81,7 +81,7 @@ class StudentController extends Controller
      */
     public function update(Request $request, Student $student)
     {
-        dd($request->all());
+        // dd($request->all());
         $student->update($request->all());
         return redirect()->route('student.index');
     }
