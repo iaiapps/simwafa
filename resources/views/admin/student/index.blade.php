@@ -8,8 +8,8 @@
 
     <a href="{{ route('student.create') }}" class="btn btn-primary mb-3">Tambah Siswa</a>
     <a href="{{ route('assign.grade') }}" class="btn btn-primary mb-3">Tentukan Kelas</a>
-    <a href="{{ route('assign.cluster') }}" class="btn btn-primary mb-3">Tentukan Kelompok</a>
-    <a href="{{ route('assign.stage') }}" class="btn btn-primary mb-3">Tentukan Jilid</a>
+    <a href="{{ route('assign.cluster') }}" class="btn btn-primary mb-3">Tentukan Kelompok dan Jilid</a>
+    {{-- <a href="{{ route('assign.stage') }}" class="btn btn-primary mb-3">Tentukan Jilid</a> --}}
 
     <div class="card p-3 mb-3">
         <p>filter data berdasarkan kelas atau kelompok (pilih salah satu filter)</p>

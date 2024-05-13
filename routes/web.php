@@ -56,8 +56,8 @@ Route::middleware('auth')->group(function () {
         Route::put('assigncluster', [StudentController::class, 'storeAssignCluster'])->name('assign.cluster');
         Route::get('assigngrade', [StudentController::class, 'assignGrade'])->name('assign.grade');
         Route::put('assigngrade', [StudentController::class, 'storeAssignGrade'])->name('assign.grade');
-        Route::get('assignstage', [StudentController::class, 'assignStage'])->name('assign.stage');
-        Route::put('assignstage', [StudentController::class, 'storeAssignStage'])->name('assign.stage');
+        // Route::get('assignstage', [StudentController::class, 'assignStage'])->name('assign.stage');
+        // Route::put('assignstage', [StudentController::class, 'storeAssignStage'])->name('assign.stage');
     });
 
     Route::middleware('role:guru')->group(function () {

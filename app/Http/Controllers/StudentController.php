@@ -109,12 +109,17 @@ class StudentController extends Controller
         $cluster_id = $request->cluster_id;
         $datas = $request->input;
         $stage_id = $request->stage_id;
+        // dd($stage_id);
         foreach ($datas as $data) {
             $id = $data['id'];
+            // $check = $data['check'];
+            // $stage_id = $stage_id[$id];
+            // dd($check);
+
             if (isset($data['check'])  == 'on') {
                 Student::where('id', $id)->update([
                     'cluster_id' => $cluster_id,
-                    'stage_id' => $stage_id[$id]
+                    'stage_id' => $stage_id
                 ]);
             }
         }
@@ -145,25 +150,25 @@ class StudentController extends Controller
     }
 
     // --- assign student stage --- //
-    public function assignStage()
-    {
-        $students = Student::where('stage_id', null)->get();
-        $stages = Stage::all();
-        return view('admin.student.assignStage.assignStage', compact('students', 'stages'));
-    }
+    // public function assignStage()
+    // {
+    //     $students = Student::where('stage_id', null)->get();
+    //     $stages = Stage::all();
+    //     return view('admin.student.assignStage.assignStage', compact('students', 'stages'));
+    // }
 
-    public function storeAssignStage(Request $request)
-    {
-        $stage_id = $request->input('stage_id');
-        $datas = $request->input('input');
-        foreach ($datas as $data) {
-            $id = $data['id'];
-            if (isset($data['check']) == 'on') {
-                Student::where('id', $id)->update([
-                    'stage_id' => $stage_id,
-                ]);
-            }
-        }
-        return redirect()->route('student.index');
-    }
+    // public function storeAssignStage(Request $request)
+    // {
+    //     $stage_id = $request->input('stage_id');
+    //     $datas = $request->input('input');
+    //     foreach ($datas as $data) {
+    //         $id = $data['id'];
+    //         if (isset($data['check']) == 'on') {
+    //             Student::where('id', $id)->update([
+    //                 'stage_id' => $stage_id,
+    //             ]);
+    //         }
+    //     }
+    //     return redirect()->route('student.index');
+    // }
 }
