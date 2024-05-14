@@ -7,6 +7,8 @@ use App\Models\Grade;
 use App\Models\Cluster;
 use App\Models\Student;
 use App\Models\Teacher;
+use App\Models\Komponen;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\Auth;
@@ -113,7 +115,7 @@ class TeacherController extends Controller
         } else {
             $students = null;
         }
-        return view('teacher.guru.cluster', compact('students'));
+        return view('teacher.guru.cluster', compact('students', 'teacher'));
     }
 
     // --- handle from walas page --- //
@@ -128,6 +130,10 @@ class TeacherController extends Controller
         } else {
             $students = null;
         }
-        return view('teacher.walas.grade', compact('students', 'teacher'));
+
+        $komponen_id = Komponen::get('id');
+        $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
+
+        return view('teacher.walas.grade', compact('students', 'teacher', 'data_komponen'));
     }
 }

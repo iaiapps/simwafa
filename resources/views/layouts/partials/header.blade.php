@@ -2,7 +2,8 @@
 
     <nav class="d-flex align-items-center">
         <div class="icon text-center align-middle bg-secondary">
-            <i class="bi bi-list-check d-sm-none fs-2 text-white"></i>
+            {{-- <i class="bi bi-list-check d-sm-none fs-2 text-white"></i> --}}
+            <p class="d-sm-none fs-2 text-white m-0">SW</p>
             <a class="navbar-brand d-none d-sm-block fs-4 text-white" href="#"> SimWafa</a>
         </div>
         <div class="flex-grow-1 px-3">

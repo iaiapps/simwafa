@@ -15,15 +15,20 @@
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
+
     @if ($akses == 'Guru')
+        <div class="mb-3 clearfix">
+            <a href="{{ route('akses.walas') }}" class="btn btn-primary float-end">ganti akses ke Wali Kelas</a>
+        </div>
         <div class="alert alert-primary">
             <span>Anda Login sebagai {{ $akses }}</span>
-            <a href="{{ route('akses.walas') }}" class="btn btn-primary btn-sm float-end">ganti akses ke Wali Kelas</a>
         </div>
     @elseif ($akses == 'Wali Kelas')
+        <div class="mb-3 clearfix">
+            <a href="{{ route('akses.walas') }}" class="btn btn-primary float-end">ganti akses ke Guru</a>
+        </div>
         <div class="alert alert-primary">
             <span>Anda Login sebagai {{ $akses }}</span>
-            <a href="{{ route('akses.walas') }}" class="btn btn-primary btn-sm float-end">ganti akses ke Guru</a>
         </div>
     @endif
 

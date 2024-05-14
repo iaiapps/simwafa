@@ -33,11 +33,13 @@ class EvaluationController extends Controller
         }
         if ($request->grade_id == 0 || $request->grade_id == null) {
             $students = null;
+            $grade_name = null;
         } else {
             $students = Student::where('grade_id', $request->grade_id)->get();
+            $grade_name = Grade::where('id', $request->grade_id)->first();
         }
 
-        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'evaluation'));
+        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'evaluation', 'grade_name'));
     }
 
     /**

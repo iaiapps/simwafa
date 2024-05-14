@@ -26,18 +26,11 @@
                             @foreach ($data_komponen->sortBy('komponen_id') as $data)
                                 <th>{{ $data->komponen->name_komp }}</th>
                             @endforeach
-
-                            {{-- @php
-                            foreach ($students as $student) {
-                                $count = $student->evaluation->count();
-                            }
-                        @endphp --}}
-
-                            {{-- <th colspan="{{ $count }}" class="text-center">Nilai</th> --}}
                             <th class="text-center"> Rerata Nilai </th>
                             <th class="text-center"> Action </th>
                         </tr>
                         <tr>
+
                         </tr>
                     </thead>
                     <tbody>
