@@ -66,13 +66,14 @@
                                             <input name="student_id[{{ $student->id }}]" value="{{ $student->id }}"
                                                 hidden>
                                             <td>
-                                                <span class="bg-secondary-subtle d-block"> {{ $student->name }}</span>
+                                                <span class="bg-secondary-subtle d-block rounded px-1">
+                                                    {{ $student->name }}</span>
                                                 {{-- <input id="name_student" type="text"
                                                     class="form-control bg-secondary-subtle" name="name_student"
                                                     value="{{ $student->name }}" readonly disabled> --}}
                                             </td>
                                             {{-- <td>{{ $student->grade->name_grade }}</td> --}}
-                                            <td style="width: 100px">
+                                            <td style="width: 80px">
                                                 <input id="nilai" type="number" class="form-control"
                                                     name="nilai[{{ $student->id }}]" min=0 max=100>
                                             </td>
