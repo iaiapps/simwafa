@@ -6,10 +6,9 @@
 @endphp
 
 <aside id="sidebar" class="sidebar position-fixed d-sm-block d-none ">
-    <div class="vh-100 d-flex flex-column flex-shrink-0 text-bg-dark px-sm-2 px-0">
-        <span class="text-center mt-3 fs-6">{{ $user->teacher->name ?? $user->name }}</span>
+    <div class="vh-100 d-flex flex-column flex-shrink-0 text-bg-dark px-sm-2">
+        <small class="text-center mt-3 px-1">{{ $user->teacher->name ?? $user->name }}</small>
         <hr>
-
         @switch($role)
             @case('admin')
                 <ul class="nav nav-pills pb-2  flex-column ">

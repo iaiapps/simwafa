@@ -7,7 +7,7 @@
         <p>filter data berdasarkan kelas </p>
         <form action="{{ route('evaluation.index') }}" method="get">
             <div class="row">
-                <div class="col-6 mb-3">
+                <div class="input-group mb-3">
                     <select name="grade_id" id="grade" class="form-select">
                         <option selected disabled>-- pilih kelas --</option>
                         {{-- <option value="0">semua kelas</option> --}}
@@ -15,8 +15,6 @@
                             <option value="{{ $grade->id }}">{{ $grade->name_grade }}</option>
                         @endforeach
                     </select>
-                </div>
-                <div class="col-4 mb-3">
                     <button type="submit" class="btn btn-primary">filter data</button>
                 </div>
             </div>
