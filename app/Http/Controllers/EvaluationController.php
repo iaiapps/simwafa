@@ -159,7 +159,7 @@ class EvaluationController extends Controller
         $student_id = $request->student_id;
         $komponen_id = $request->komponen_id;
         $nilai = $request->nilai;
-
+        // dd($request->all());
         foreach ($student_id as $sid) {
             $data = Evaluation::where('student_id', $sid)
                 ->where('komponen_id', $komponen_id)->first();

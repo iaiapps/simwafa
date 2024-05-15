@@ -46,7 +46,7 @@
                             {{ $komponen_id->name_komp ?? 'Komponen belum dipilih' }}
                         </p>
                         <div class="table-responsive">
-                            <table class="table table-bordered">
+                            <table class="table table-bordered align-middle">
                                 <thead>
                                     <tr>
                                         <th class="text-center">No</th>
@@ -65,15 +65,16 @@
                                             <input name="komponen_id" value="{{ $komponen_id->id }}" hidden>
                                             <input name="student_id[{{ $student->id }}]" value="{{ $student->id }}"
                                                 hidden>
-                                            <td style="width: 100%">
-                                                <input id="name_student" type="text"
+                                            <td>
+                                                <span class="bg-secondary-subtle d-block"> {{ $student->name }}</span>
+                                                {{-- <input id="name_student" type="text"
                                                     class="form-control bg-secondary-subtle" name="name_student"
-                                                    value="{{ $student->name }}" readonly disabled>
+                                                    value="{{ $student->name }}" readonly disabled> --}}
                                             </td>
                                             {{-- <td>{{ $student->grade->name_grade }}</td> --}}
-                                            <td>
+                                            <td style="width: 100px">
                                                 <input id="nilai" type="number" class="form-control"
-                                                    name="nilai[{{ $student->id }}]">
+                                                    name="nilai[{{ $student->id }}]" min=0 max=100>
                                             </td>
                                         </tr>
                                     @empty
