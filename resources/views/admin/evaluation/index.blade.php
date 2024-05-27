@@ -2,6 +2,10 @@
 
 @section('title', 'Data Nilai Siswa')
 
+@php
+    $count = count($data_komponen);
+@endphp
+
 @section('content')
     <div class="card p-3 mb-3">
         <p>filter data berdasarkan kelas </p>
@@ -37,49 +41,61 @@
             <div class="table-responsive">
                 <table id="" class="table table-bordered">
                     <thead>
-                        <tr>
-                            <th rowspan="2" class="text-center">No</th>
-                            <th rowspan="2" class="text-center">Siswa</th>
-                            <th rowspan="2" class="text-center">Kelompok</th>
-                        </tr>
-                        <tr>
-                            @foreach ($data_komponen->sortBy('komponen_id') as $data)
-                                <th>{{ $data->komponen->name_komp }}</th>
-                            @endforeach
-
-                            <th class="text-center"> Rerata Nilai </th>
-                            {{-- <th class="text-center"> Action </th> --}}
+                        <tr class="align-middle text-center">
+                            <th>No</th>
+                            <th>Siswa</th>
+                            <th>Kelompok</th>
+                            <th class="p-0">
+                                <table class="table table-bordered m-0">
+                                    <th colspan={{ $count }} class="text-center">Nilai</th>
+                                    <tr class="align-middle">
+                                        @foreach ($data_komponen->sortBy('komponen_id') as $data)
+                                            <th style="width:25%" class="border-end border-bottom-0">
+                                                {{ $data->komponen->name_komp }}</th>
+                                        @endforeach
+                                    </tr>
+                                </table>
+                            </th>
+                            <th> Rerata Nilai </th>
+                            {{-- <th> Action </th> --}}
                         </tr>
                     </thead>
                     <tbody>
                         @forelse ($students as $student)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td> {{ $student->name }} </td>
+                                <td>{{ $student->name }} </td>
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</td>
-                                @foreach ($student->evaluation->sortBy('komponen_id') as $i)
-                                    <td>
-                                        {{-- {{ $i->komponen->name_komp }} : --}}
-                                        {{ $i->nilai }}
-                                    </td>
-                                @endforeach
-                                @php
-                                    $count = count($data_komponen);
-                                @endphp
-                                <td colspan="{{ $count + 1 }}" class="text-center">
+                                <td class="m-0 p-0">
+                                    <table class="table m-0 p-0">
+                                        <tr>
+                                            @foreach ($student->evaluation->sortBy('komponen_id') as $nilai => $i)
+                                                @if (count($student->evaluation) < count($data_komponen))
+                                                    <td style="width:25%" class="border-start border-end border-bottom-0">
+                                                        {{ $i->nilai }}</td>
+                                                    @if ($loop->last)
+                                                        <td style="width:25%"
+                                                            class="border-start border-end border-bottom-0">-</td>
+                                                    @endif
+                                                @else
+                                                    <td style="width:25%" class=" border-start border-end border-bottom-0">
+                                                        {{ $i->nilai }} </td>
+                                                @endif
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                </td>
+
+                                <td class="text-center">
                                     {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
                                 {{-- <td>
                                     <a href="{{ route('evaluation.show', $student->id) }}"
-                                        class="btn btn-warning btn-sm">detail nilai</a>
+                                        class="btn btn-warning btn-sm">detail</a>
                                 </td> --}}
                             </tr>
                         @empty
-                            @php
-                                $count = count($data_komponen);
-                            @endphp
                             <tr>
-                                <td colspan="{{ $count + 5 }}" class="text-center">data tidak
-                                    tersedia</td>
+                                <td colspan="{{ $count + 5 }}" class="text-center">data tidak tersedia</td>
                             </tr>
                         @endforelse
                     </tbody>

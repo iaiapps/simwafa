@@ -26,11 +26,11 @@ class EvaluationController extends Controller
         $komponen_id = Komponen::get('id');
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
 
-        $students_id = Student::get('id');
-        foreach ($students_id as $student) {
-            $evaluation = Evaluation::where('student_id', $student->id)->get();
-            // dd($evaluation->avg('nilai'));
-        }
+        // $students_id = Student::where('grade_id', $request->grade_id)->get('id');
+        // foreach ($students_id as $id) {
+        //     $evalu = Evaluation::where('student_id', $id->id)->get();
+        // }
+
         if ($request->grade_id == 0 || $request->grade_id == null) {
             $students = null;
             $grade_name = null;
@@ -39,7 +39,7 @@ class EvaluationController extends Controller
             $grade_name = Grade::where('id', $request->grade_id)->first();
         }
 
-        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'evaluation', 'grade_name'));
+        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'grade_name'));
     }
 
     /**
