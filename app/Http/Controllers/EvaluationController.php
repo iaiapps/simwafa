@@ -13,6 +13,7 @@ use Illuminate\Support\Carbon;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Database\Eloquent\Collection;
+use Illuminate\Support\Facades\Redirect;
 use Mockery\Generator\Parameter;
 
 class EvaluationController extends Controller
@@ -102,9 +103,12 @@ class EvaluationController extends Controller
     /**
      * Remove the specified resource from storage.
      */
-    public function destroy(Evaluation $evaluation)
+    public function destroy($del, Request $request)
     {
-        //
+        // dd($request->all());
+        $del = Evaluation::where('student_id', $del);
+        $del->delete();
+        return redirect()->route('evaluation.index', ['grade_id' => $request->grade_id]);
     }
 
 

@@ -2,6 +2,10 @@
 
 @section('title', 'Data Siswa')
 
+@php
+    $count = count($data_komponen);
+@endphp
+
 @section('content')
     @if ($students == null)
         <div class="card p-3 text-center">
@@ -16,17 +20,24 @@
             <small class="mb-2">*geser tabel jika terpotong</small>
 
             <div class="table-responsive">
-                <table class="table table-bordered">
-                    <thead>
+                <table class="table table-bordered ">
+                    <thead class="text-center align-middle">
                         <tr>
                             <th scope="col">#</th>
                             <th scope="col">Name</th>
-                            {{-- <th scope="col">Kelas</th> --}}
                             <th scope="col">Kelompok</th>
                             <th scope="col">Jilid</th>
-                            @foreach ($data_komponen->sortBy('komponen_id') as $data)
-                                <th>{{ $data->komponen->name_komp }}</th>
-                            @endforeach
+                            <th class="p-0">
+                                <table class="table table-bordered m-0">
+                                    <th colspan={{ $count }} class="text-center">Nilai</th>
+                                    <tr class="align-middle">
+                                        @foreach ($data_komponen->sortBy('komponen_id') as $data)
+                                            <th style="width:25%" class="border-end border-bottom-0">
+                                                {{ $data->komponen->name_komp }}</th>
+                                        @endforeach
+                                    </tr>
+                                </table>
+                            </th>
                             <th scope="col">Rerata</th>
                             {{-- <th scope="col">Action</th> --}}
 
@@ -41,15 +52,26 @@
                                 {{-- <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td> --}}
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</td>
                                 <td>{{ $student->stage->name_stage ?? 'belum ditentukan' }}</td>
-                                @foreach ($student->evaluation->sortBy('komponen_id') as $i)
-                                    <td>
-                                        {{-- {{ $i->komponen->name_komp }} : --}}
-                                        {{ $i->nilai }}
-                                    </td>
-                                @endforeach
-                                @php
-                                    $count = count($data_komponen);
-                                @endphp
+                                <td class="m-0 p-0">
+                                    <table class="table m-0 p-0">
+                                        <tr>
+                                            @foreach ($student->evaluation->sortBy('komponen_id') as $nilai => $i)
+                                                @if (count($student->evaluation) < count($data_komponen))
+                                                    <td style="width:25%" class="border-start border-end border-bottom-0">
+                                                        {{ $i->nilai }}</td>
+                                                    @if ($loop->last)
+                                                        <td style="width:25%"
+                                                            class="border-start border-end border-bottom-0">-</td>
+                                                    @endif
+                                                @else
+                                                    <td style="width:25%" class=" border-start border-end border-bottom-0">
+                                                        {{ $i->nilai }} </td>
+                                                @endif
+                                            @endforeach
+                                        </tr>
+                                    </table>
+                                </td>
+
                                 <td colspan="{{ $count + 1 }}" class="text-center">
                                     {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
                                 {{-- <td>

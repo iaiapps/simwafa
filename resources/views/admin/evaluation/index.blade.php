@@ -25,7 +25,6 @@
         </form>
     </div>
 
-    {{-- @dd($students) --}}
     @if ($students == null)
         <div class="card p-3">
             <p class="fs-5 text-center m-0">kelas belum dipilih</p>
@@ -57,7 +56,7 @@
                                 </table>
                             </th>
                             <th> Rerata Nilai </th>
-                            {{-- <th> Action </th> --}}
+                            <th> Action </th>
                         </tr>
                     </thead>
                     <tbody>
@@ -88,10 +87,19 @@
 
                                 <td class="text-center">
                                     {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
-                                {{-- <td>
-                                    <a href="{{ route('evaluation.show', $student->id) }}"
-                                        class="btn btn-warning btn-sm">detail</a>
-                                </td> --}}
+                                <td>
+                                    {{-- @foreach ($student->evaluation->sortBy('komponen_id') as $nilai => $i) --}}
+                                    <form onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');"
+                                        action="{{ route('evaluation.destroy', ['del' => $student->id, 'grade_id' => request()->get('grade_id')]) }}"
+                                        method="post" class="d-inline">
+                                        @csrf
+                                        @method('delete')
+                                        <button type="submit" class="btn btn-danger btn-sm">
+                                            <i class="bi bi-trash3"></i> del
+                                        </button>
+                                    </form>
+                                    {{-- @endforeach --}}
+                                </td>
                             </tr>
                         @empty
                             <tr>

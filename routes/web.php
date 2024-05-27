@@ -44,7 +44,8 @@ Route::middleware('auth')->group(function () {
         Route::resource('stage', StageController::class);
 
         // nilai
-        Route::resource('evaluation', EvaluationController::class);
+        Route::delete('evaluation/{del}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
+        Route::resource('evaluation', EvaluationController::class)->except('destroy');
         // Route::get('assigneval', [EvaluationController::class, 'assigneval'])->name('assign.eval');
 
         // edit role
