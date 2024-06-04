@@ -27,10 +27,7 @@ class EvaluationController extends Controller
         $komponen_id = Komponen::get('id');
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
 
-        // $students_id = Student::where('grade_id', $request->grade_id)->get('id');
-        // foreach ($students_id as $id) {
-        //     $evalu = Evaluation::where('student_id', $id->id)->get();
-        // }
+        $komponens = Komponen::all();
 
         if ($request->grade_id == 0 || $request->grade_id == null) {
             $students = null;
@@ -40,7 +37,7 @@ class EvaluationController extends Controller
             $grade_name = Grade::where('id', $request->grade_id)->first();
         }
 
-        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'grade_name'));
+        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'grade_name', 'komponens'));
     }
 
     /**
@@ -130,6 +127,7 @@ class EvaluationController extends Controller
         // ini cara mengambil parameter dari function lain 
         // yang memiliki lebih dari 1 Parameter
         list($teacher, $cluster_id) = $this->teacherId();
+        $komponens = Komponen::all();
 
         if (isset($cluster_id)) {
             $students = Student::where('cluster_id', $cluster_id)->get();
@@ -140,7 +138,7 @@ class EvaluationController extends Controller
         $komponen_id = Komponen::get('id');
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
 
-        return view('teacher.evaluation.evalindex', compact('students', 'data_komponen', 'teacher'));
+        return view('teacher.evaluation.evalindex', compact('students', 'komponens', 'teacher'));
     }
 
     public function evalStudent(Request $request)

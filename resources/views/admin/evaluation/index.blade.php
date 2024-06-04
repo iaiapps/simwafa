@@ -44,17 +44,9 @@
                             <th>No</th>
                             <th>Siswa</th>
                             <th>Kelompok</th>
-                            <th class="p-0">
-                                <table class="table table-bordered m-0">
-                                    <th colspan={{ $count }} class="text-center">Nilai</th>
-                                    <tr class="align-middle">
-                                        @foreach ($data_komponen->sortBy('komponen_id') as $data)
-                                            <th style="width:25%" class="border-end border-bottom-0">
-                                                {{ $data->komponen->name_komp }}</th>
-                                        @endforeach
-                                    </tr>
-                                </table>
-                            </th>
+                            @foreach ($komponens->sortBy('komponen_id') as $komponen)
+                                <th> {{ $komponen->name_komp }}</th>
+                            @endforeach
                             <th> Rerata Nilai </th>
                             <th> Action </th>
                         </tr>
@@ -64,31 +56,17 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $student->name }} </td>
-                                <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</td>
-                                <td class="m-0 p-0">
-                                    <table class="table m-0 p-0">
-                                        <tr>
-                                            @foreach ($student->evaluation->sortBy('komponen_id') as $nilai => $i)
-                                                @if (count($student->evaluation) < count($data_komponen))
-                                                    <td style="width:25%" class="border-start border-end border-bottom-0">
-                                                        {{ $i->nilai }}</td>
-                                                    @if ($loop->last)
-                                                        <td style="width:25%"
-                                                            class="border-start border-end border-bottom-0">-</td>
-                                                    @endif
-                                                @else
-                                                    <td style="width:25%" class=" border-start border-end border-bottom-0">
-                                                        {{ $i->nilai }} </td>
-                                                @endif
-                                            @endforeach
-                                        </tr>
-                                    </table>
-                                </td>
+                                <td>{{ $student->cluster->name_cluster }}</td>
+
+                                @foreach ($komponens as $komponen)
+                                    <td class="mb-0">
+                                        {{ $student->evaluation->where('komponen_id', $komponen->id)->first()?->nilai }}
+                                    </td>
+                                @endforeach
 
                                 <td class="text-center">
                                     {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
                                 <td>
-                                    {{-- @foreach ($student->evaluation->sortBy('komponen_id') as $nilai => $i) --}}
                                     <form onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');"
                                         action="{{ route('evaluation.destroy', ['del' => $student->id, 'grade_id' => request()->get('grade_id')]) }}"
                                         method="post" class="d-inline">
@@ -98,7 +76,6 @@
                                             <i class="bi bi-trash3"></i> del
                                         </button>
                                     </form>
-                                    {{-- @endforeach --}}
                                 </td>
                             </tr>
                         @empty

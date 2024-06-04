@@ -2,10 +2,6 @@
 
 @section('title', 'Data Siswa')
 
-@php
-    $count = count($data_komponen);
-@endphp
-
 @section('content')
     @if ($students == null)
         <div class="card p-3 text-center">
@@ -27,17 +23,9 @@
                             <th scope="col">Name</th>
                             <th scope="col">Kelompok</th>
                             <th scope="col">Jilid</th>
-                            <th class="p-0">
-                                <table class="table table-bordered m-0">
-                                    <th colspan={{ $count }} class="text-center">Nilai</th>
-                                    <tr class="align-middle">
-                                        @foreach ($data_komponen->sortBy('komponen_id') as $data)
-                                            <th style="width:25%" class="border-end border-bottom-0">
-                                                {{ $data->komponen->name_komp }}</th>
-                                        @endforeach
-                                    </tr>
-                                </table>
-                            </th>
+                            @foreach ($komponens->sortBy('komponen_id') as $komponen)
+                                <th> {{ $komponen->name_komp }}</th>
+                            @endforeach
                             <th scope="col">Rerata</th>
                             {{-- <th scope="col">Action</th> --}}
 
@@ -49,31 +37,15 @@
                             <tr>
                                 <td>{{ $student->id }}</td>
                                 <td>{{ $student->name }}</td>
-                                {{-- <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td> --}}
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</td>
                                 <td>{{ $student->stage->name_stage ?? 'belum ditentukan' }}</td>
-                                <td class="m-0 p-0">
-                                    <table class="table m-0 p-0">
-                                        <tr>
-                                            @foreach ($student->evaluation->sortBy('komponen_id') as $nilai => $i)
-                                                @if (count($student->evaluation) < count($data_komponen))
-                                                    <td style="width:25%" class="border-start border-end border-bottom-0">
-                                                        {{ $i->nilai }}</td>
-                                                    @if ($loop->last)
-                                                        <td style="width:25%"
-                                                            class="border-start border-end border-bottom-0">-</td>
-                                                    @endif
-                                                @else
-                                                    <td style="width:25%" class=" border-start border-end border-bottom-0">
-                                                        {{ $i->nilai }} </td>
-                                                @endif
-                                            @endforeach
-                                        </tr>
-                                    </table>
-                                </td>
+                                @foreach ($komponens as $komponen)
+                                    <td class="mb-0">
+                                        {{ $student->evaluation->where('komponen_id', $komponen->id)->first()?->nilai }}
+                                    </td>
+                                @endforeach
 
-                                <td colspan="{{ $count + 1 }}" class="text-center">
-                                    {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
+                                <td class="text-center"> {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
                                 {{-- <td>
                                     <a href="{{ route('student.evaluation.show', $student->id) }}"
                                         class="btn btn-warning btn-sm">detail</a>

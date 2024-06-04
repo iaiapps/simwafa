@@ -108,14 +108,15 @@ class TeacherController extends Controller
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
-        // dd($teacher->cluster->id);
+        $komponens = Komponen::all();
+
         if (isset($teacher->cluster->id)) {
             $cluster_id = $teacher->cluster->id;
             $students = Student::where('cluster_id', $cluster_id)->get();
         } else {
             $students = null;
         }
-        return view('teacher.guru.cluster', compact('students', 'teacher'));
+        return view('teacher.guru.cluster', compact('students', 'teacher', 'komponens'));
     }
 
     // --- handle from walas page --- //
@@ -123,6 +124,7 @@ class TeacherController extends Controller
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
+        $komponens = Komponen::all();
 
         if (isset($teacher->grade->id)) {
             $grade_id = $teacher->grade->id;
@@ -131,9 +133,6 @@ class TeacherController extends Controller
             $students = null;
         }
 
-        $komponen_id = Komponen::get('id');
-        $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
-
-        return view('teacher.walas.grade', compact('students', 'teacher', 'data_komponen'));
+        return view('teacher.walas.grade', compact('students', 'teacher', 'komponens'));
     }
 }
