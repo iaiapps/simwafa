@@ -56,7 +56,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $student->name }} </td>
-                                <td>{{ $student->cluster->name_cluster }}</td>
+                                <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan ' }}</td>
 
                                 @foreach ($komponens as $komponen)
                                     <td class="mb-0">
