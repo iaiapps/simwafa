@@ -6,12 +6,12 @@
 @endphp
 
 <aside id="sidebar" class="sidebar position-fixed d-sm-block d-none ">
-    <div class="vh-100 d-flex flex-column flex-shrink-0 text-bg-dark px-sm-2">
-        <small class="text-center mt-3 px-1">{{ $user->teacher->name ?? $user->name }}</small>
+    <div class="vh-100 text-bg-dark px-sm-2 overflow-scroll">
+        <small class="d-block text-center pt-3 px-1">{{ $user->teacher->name ?? $user->name }}</small>
         <hr>
         @switch($role)
             @case('admin')
-                <ul class="nav nav-pills pb-2  flex-column ">
+                <ul class="nav nav-pills pb-2 flex-column">
                     <li class="nav-item">
                         <a href="{{ route('home') }}"
                             class="nav-link text-center text-sm-start text-white 
@@ -169,8 +169,7 @@
 
             @default
         @endswitch
-
-        <hr>
-        <small class="text-center mt-2">versi 1.0.0</small>
+        <hr class="mb-1">
+        <small class="d-block text-center pb-5 mb-4">versi 1.0.0</small>
     </div>
 </aside>
