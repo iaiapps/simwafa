@@ -13,6 +13,8 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KomponenController;
 use App\Http\Controllers\EvaluationController;
+use App\Http\Controllers\GraduationController;
+use App\Http\Controllers\YearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -42,6 +44,15 @@ Route::middleware('auth')->group(function () {
         Route::resource('cluster', ClusterController::class);
         Route::resource('komponen', KomponenController::class);
         Route::resource('stage', StageController::class);
+        Route::resource('year', YearController::class);
+
+
+        // graduation
+        Route::resource('graduation', GraduationController::class);
+        Route::post('grade_class', [GraduationController::class, 'grade_class'])->name('grade_class');
+        Route::get('move', [GraduationController::class, 'move'])->name('move');
+        Route::get('grad', [GraduationController::class, 'grad'])->name('grad');
+        // Route::post('move', [GraduationController::class, 'student_graduation'])->name('move');
 
         // nilai
         Route::delete('evaluation/{del}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
