@@ -34,7 +34,7 @@ class HomeController extends Controller
 
         if ($user->hasRole('admin')) {
             return view('admin.home', compact('teacher', 'student'));
-        } elseif ($user->hasRole(['walas', 'guru'])) {
+        } elseif ($user->hasRole('guru')) {
             return view('teacher.home', compact('teacher'));
         }
     }
@@ -51,7 +51,7 @@ class HomeController extends Controller
     public function changeAccess()
     {
         $teacher = $this->walas();
-        // dd($teacher);
+        // dd(session('akses'));
         if (isset($teacher)) {
             if (session('akses') == 'Guru') {
                 session()->put([

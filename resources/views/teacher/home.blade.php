@@ -10,31 +10,48 @@
     @endphp
 
     @if (session('msg'))
-        <div class="alert alert-warning alert-dismissible fade show" role="alert">
+        <div class="alert alert-success alert-dismissible fade show" role="alert">
             {{ session('msg') }}
             <button type="button" class="btn-close" data-bs-dismiss="alert" aria-label="Close"></button>
         </div>
     @endif
 
     @if ($akses == 'Guru')
-        <div class="mb-3 clearfix">
+        {{-- <div class="mb-3 clearfix">
             <a href="{{ route('akses.walas') }}" class="btn btn-primary float-end">ganti akses ke Wali Kelas</a>
         </div>
         <div class="alert alert-primary">
             <span>Anda Login sebagai {{ $akses }}</span>
+        </div> --}}
+
+        <div class="row mb-3 align-items-center gy-3">
+            <div class="col-md-9 col-12">
+                <p class="text-center bg-warning p-2 rounded m-0">
+                    Saat ini anda Login sebagai {{ $akses }}
+                </p>
+            </div>
+            <div class="col-md-3 col-12">
+                <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">ganti akses ke
+                    Wali Kelas</a>
+            </div>
         </div>
     @elseif ($akses == 'Wali Kelas')
-        <div class="mb-3 clearfix">
-            <a href="{{ route('akses.walas') }}" class="btn btn-primary float-end">ganti akses ke Guru</a>
-        </div>
-        <div class="alert alert-primary">
-            <span>Anda Login sebagai {{ $akses }}</span>
+        <div class="row mb-3 align-items-center gy-3">
+            <div class="col-md-9 col-12">
+                <p class="text-center bg-warning p-2 rounded m-0">
+                    Saat ini anda Login sebagai {{ $akses }}
+                </p>
+            </div>
+            <div class="col-md-3 col-12">
+                <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">ganti akses ke
+                    Guru</a>
+            </div>
         </div>
     @endif
 
     <div class="card rounded p-3 mb-3">
         <p class="fs-4 text-center m-0">
-            Selamat Datang di Sistem Informasi Penilaian Wafa SDIT Harapan Umat Jember
+            Selamat Datang di Sistem Penilaian Wafa SDIT Harapan Umat Jember
         </p>
     </div>
     <div class="card rounded p-3">

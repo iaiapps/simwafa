@@ -5,32 +5,32 @@
 @section('content')
     <div class="card rounded p-3">
         <p class="fs-4 text-center m-0">
-            Selamat Datang di Sistem Informasi Penilaian Wafa SDIT Harapan Umat Jember
+            Selamat Datang di Sistem Penilaian Wafa SDIT Harapan Umat Jember
         </p>
     </div>
 
-    {{-- <div class="container text-center mb-3">
+    <div class="container text-center my-3">
         <div class="row">
             <div class="col-12 col-md-4 bg-primary p-2">
-                <a href="http://sister.sditharum.id:8000/guru/teacher-profile" class="nav-link btn btn-outline text-white">
+                <a href="{{ route('teacher.index') }}" class="nav-link btn btn-outline text-white">
                     <i class="bi bi-person fs-2"></i>
-                    <span class="d-block">Profil</span>
+                    <span class="d-block">Data Guru</span>
                 </a>
             </div>
-            <div class="col-12 col-md-4 bg-light p-2">
-                <a href="http://sister.sditharum.id:8000/document" class="nav-link btn btn-outline text-dark">
-                    <i class="bi bi-card-image fs-2"></i>
-                    <span class="d-block">Dokumen</span>
+            <div class="col-12 col-md-4 bg-warning p-2">
+                <a href="{{ route('student.index') }}" class="nav-link btn btn-outline text-dark">
+                    <i class="bi bi-people fs-2"></i>
+                    <span class="d-block">Data Siswa</span>
                 </a>
             </div>
             <div class="col-12 col-md-4 bg-danger p-2">
-                <a href="http://sister.sditharum.id:8000/guru/teacher-presence" class="nav-link btn btn-outline text-white">
-                    <i class="bi bi-calendar-check fs-2"></i>
-                    <span class="d-block">Presensi</span>
+                <a href="{{ route('evaluation.index') }}" class="nav-link btn btn-outline text-white">
+                    <i class="bi bi-journal-check fs-2"></i>
+                    <span class="d-block">Nilai Siswa</span>
                 </a>
             </div>
         </div>
-    </div> --}}
+    </div>
 
     <div id="info" class="row gx-3 mb-3">
         <div class="col-12 col-sm-6">
@@ -59,7 +59,7 @@
     </div>
 
     <div class="card rounded p-3">
-        <ul class="list-group text-center">
+        <ul class="list-group shadow-0">
             <li class="list-group-item">Penilian BTAQ atau Wafa dalam 1 semester mencakup Penilaian Harian, Sumatif Tengah
                 Semester (STS)
                 dan Sumatif Akhir Semester (SAS)</li>

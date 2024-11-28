@@ -45,14 +45,15 @@ class LoginController extends Controller
     {
         $user_id = $user->id;
         $walas = Teacher::where('user_id', $user_id)->where('grade_id', '!=', NULL)->first();
-
-        if ($user->hasRole('guru') && !is_null($walas)) {
-            session()->put([
-                'akses' => 'Wali Kelas',
-            ]);
-        } elseif ($user->hasRole('guru')) {
+        // dd($walas);
+        if ($user->hasRole('guru')) {
+            // dd($walas);
             session()->put([
                 'akses' => 'Guru',
+            ]);
+        } elseif ($user->hasRole('guru') && !is_null($walas)) {
+            session()->put([
+                'akses' => 'Wali Kelas',
             ]);
         }
         return redirect()->route('home');
