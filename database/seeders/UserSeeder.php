@@ -30,13 +30,13 @@ class UserSeeder extends Seeder
         //     ]);
         // $walas->assignRole('walas');
 
-        $teacher =
-            User::create([
-                'name' => 'teacher',
-                'email' => 'teacher@gmail.com',
-                'password' => Hash::make('password'),
-            ]);
-        $teacher->assignRole('guru');
+        // $teacher =
+        //     User::create([
+        //         'name' => 'teacher',
+        //         'email' => 'teacher@gmail.com',
+        //         'password' => Hash::make('password'),
+        //     ]);
+        // $teacher->assignRole('guru');
 
         // $parent =
         //     User::create([

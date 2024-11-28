@@ -3,7 +3,7 @@
 @section('title', 'Data Nilai Siswa')
 
 @section('content')
-    @if ($students == null)
+    @if ($students->isEmpty())
         <div class="card p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>
             <p>Hubungi Admin</p>
@@ -45,7 +45,7 @@
                             </tr>
                         @empty
                             <tr>
-                                <td class="text-center">data nilai tidak tersedia</td>
+                                <td class="text-center" colspan="10">data nilai tidak tersedia</td>
                             </tr>
                         @endforelse
                     </tbody>

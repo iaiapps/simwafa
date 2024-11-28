@@ -21,10 +21,11 @@ class DatabaseSeeder extends Seeder
 
         $this->call(RoleSeeder::class);
         $this->call(UserSeeder::class);
-        $this->call(TeacherSeeder::class);
-        $this->call(StudentSeeder::class);
-        $this->call(ClusterSeeder::class);
+        // $this->call(TeacherSeeder::class);
+        // $this->call(StudentSeeder::class);
+        // $this->call(ClusterSeeder::class);
         $this->call(GradeSeeder::class);
         $this->call(StageSeeder::class);
+        $this->call(KomponenSeeder::class);
     }
 }

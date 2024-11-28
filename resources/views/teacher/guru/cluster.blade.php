@@ -3,11 +3,13 @@
 @section('title', 'Data Kelompok')
 
 @section('content')
+    {{-- @dd($students) --}}
 
-    @if ($students == null)
-        <div class="card p-3 text-center">
+    @if ($students->isEmpty())
+        <div class="bg-white rounded p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>
-            <p>Hubungi Admin</p>
+            <a href="{{ route('tassign.cluster') }}" class="btn btn-primary">pilih kelompok</a>
+
         </div>
     @else
         <div class="card rounded p-3">
@@ -42,7 +44,7 @@
         </div>
     @endif
 @endsection
-@push('css')
+{{-- @push('css')
     <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">
     <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @endpush
@@ -55,4 +57,4 @@
             });
         });
     </script>
-@endpush
+@endpush --}}

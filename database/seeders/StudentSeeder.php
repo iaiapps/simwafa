@@ -13,26 +13,26 @@ class StudentSeeder extends Seeder
      */
     public function run(): void
     {
-        Student::create([
-            'name' => 'murid 1',
-        ]);
-        Student::create([
-            'name' => 'murid 2',
-        ]);
-        Student::create([
-            'name' => 'murid 3',
-        ]);
-        Student::create([
-            'name' => 'murid 4',
-        ]);
-        Student::create([
-            'name' => 'murid 5',
-        ]);
-        Student::create([
-            'name' => 'murid 6',
-        ]);
-        Student::create([
-            'name' => 'murid 7',
-        ]);
+        // Student::create([
+        //     'name' => 'murid 1',
+        // ]);
+        // Student::create([
+        //     'name' => 'murid 2',
+        // ]);
+        // Student::create([
+        //     'name' => 'murid 3',
+        // ]);
+        // Student::create([
+        //     'name' => 'murid 4',
+        // ]);
+        // Student::create([
+        //     'name' => 'murid 5',
+        // ]);
+        // Student::create([
+        //     'name' => 'murid 6',
+        // ]);
+        // Student::create([
+        //     'name' => 'murid 7',
+        // ]);
     }
 }

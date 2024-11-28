@@ -9,7 +9,17 @@
     <a href="{{ route('student.create') }}" class="btn btn-primary mb-3">Tambah Siswa</a>
     <a href="{{ route('assign.grade') }}" class="btn btn-primary mb-3">Tentukan Kelas</a>
     <a href="{{ route('assign.cluster') }}" class="btn btn-primary mb-3">Tentukan Kelompok dan Jilid</a>
-    {{-- <a href="{{ route('assign.stage') }}" class="btn btn-primary mb-3">Tentukan Jilid</a> --}}
+    <hr>
+    <a href="{{ route('move.grade') }}" class="btn btn-warning mb-3">Pindahkan Siswa</a>
+
+    <form action="{{ route('deleteAll') }}" method="POST">
+        @csrf
+        <button onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');" type="submit"
+            class="btn btn-danger mb-3">Hapus
+            Siswa</button>
+    </form>
+
+
 
     <div class="card p-3 mb-3">
         <p>filter data berdasarkan kelas atau kelompok (pilih salah satu filter)</p>

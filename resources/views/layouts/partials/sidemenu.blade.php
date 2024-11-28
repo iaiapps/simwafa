@@ -84,16 +84,7 @@
                             <small class="m-0 p-0 d-sm-none d-sm-block">Siswa</small>
                         </a>
                     </li>
-                    <li class="nav-item">
-                        <a href="{{ route('graduation.index') }}"
-                            class="nav-link text-center text-sm-start text-white
-                    {{ Route::currentRouteName() == 'graduation.index' ? 'active' : '' }}">
-                            <i class="bi bi-mortarboard menu-icon"></i>
-                            <span class="ms-2 d-none d-sm-inline">Kelulusan</span>
-                            <br class="d-sm-none d-inline">
-                            <small class="m-0 p-0 d-sm-none d-sm-block">lulus</small>
-                        </a>
-                    </li>
+
                     <li class="nav-item">
                         <a href="{{ route('evaluation.index') }}"
                             class="nav-link text-center text-sm-start text-white

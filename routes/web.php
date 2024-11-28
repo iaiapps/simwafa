@@ -1,7 +1,6 @@
 <?php
 
 use App\Http\Controllers\Auth\LoginController;
-use App\Models\Evaluation;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Route;
 use App\Http\Controllers\HomeController;
@@ -13,8 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KomponenController;
 use App\Http\Controllers\EvaluationController;
-use App\Http\Controllers\GraduationController;
-use App\Http\Controllers\YearController;
+
 
 /*
 |--------------------------------------------------------------------------
@@ -27,9 +25,10 @@ use App\Http\Controllers\YearController;
 |
 */
 
-// Route::get('/', function () {
-//     return view('admin.index');
-// });
+// note
+// grade = kelas
+// clustrer =kelompok
+// stage = jilid
 
 Auth::routes();
 
@@ -44,15 +43,6 @@ Route::middleware('auth')->group(function () {
         Route::resource('cluster', ClusterController::class);
         Route::resource('komponen', KomponenController::class);
         Route::resource('stage', StageController::class);
-        Route::resource('year', YearController::class);
-
-
-        // graduation
-        Route::resource('graduation', GraduationController::class);
-        Route::post('grade_class', [GraduationController::class, 'grade_class'])->name('grade_class');
-        Route::get('move', [GraduationController::class, 'move'])->name('move');
-        Route::get('grad', [GraduationController::class, 'grad'])->name('grad');
-        // Route::post('move', [GraduationController::class, 'student_graduation'])->name('move');
 
         // nilai
         Route::delete('evaluation/{del}', [EvaluationController::class, 'destroy'])->name('evaluation.destroy');
@@ -70,11 +60,19 @@ Route::middleware('auth')->group(function () {
         Route::put('assigngrade', [StudentController::class, 'storeAssignGrade'])->name('assign.grade');
         // Route::get('assignstage', [StudentController::class, 'assignStage'])->name('assign.stage');
         // Route::put('assignstage', [StudentController::class, 'storeAssignStage'])->name('assign.stage');
+
+        // menu siswa
+        Route::post('deletestudentall', [StudentController::class, 'deleteAll'])->name('deleteAll');
+        Route::get('movecluster', [StudentController::class, 'moveGrade'])->name('move.grade');
+        Route::put('movecluster', [StudentController::class, 'storeMoveGrade'])->name('move.grade');
     });
 
     Route::middleware('role:guru')->group(function () {
-        //dapatkan student cluster
+        //dapatkan student cluster(kelompok)
         Route::get('student-cluster', [TeacherController::class, 'studentCluster'])->name('student.cluster');
+        // assigncluster
+        Route::get('t_assigncluster', [TeacherController::class, 'assignCluster'])->name('tassign.cluster');
+        Route::put('t_assigncluster', [TeacherController::class, 'storeAssignCluster'])->name('tassign.cluster');
 
         // nilai
         Route::get('evalindex', [EvaluationController::class, 'evalIndex'])->name('eval.index');

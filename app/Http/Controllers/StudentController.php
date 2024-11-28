@@ -52,6 +52,7 @@ class StudentController extends Controller
      */
     public function store(Request $request)
     {
+        // dd($request->all());
         Student::create($request->all());
         return redirect()->route('student.index');
     }
@@ -149,6 +150,13 @@ class StudentController extends Controller
         return redirect()->route('student.index');
     }
 
+    // delete all student
+    public function deleteAll()
+    {
+        Student::where('id', '>', 0)->delete();
+        return redirect()->route('student.index');
+    }
+
     // --- assign student stage --- //
     // public function assignStage()
     // {
@@ -171,4 +179,28 @@ class StudentController extends Controller
     //     }
     //     return redirect()->route('student.index');
     // }
+
+    // move grade
+    public function moveGrade()
+    {
+        $students = Student::where('grade_id', null)->orWhere('stage_id', null)->get();
+        $grades = Grade::all();
+        // $stages = Stage::all();
+        return view('admin.student.moveGrade.moveGrade', compact('students', 'grades'));
+    }
+
+    public function storeMoveGrade(Request $request)
+    {
+        $grade_id = $request->input('grade_id');
+        $datas = $request->input('input');
+        foreach ($datas as $data) {
+            $id = $data['id'];
+            if (isset($data['check']) == 'on') {
+                Student::where('id', $id)->update([
+                    'grade_id' => $grade_id,
+                ]);
+            }
+        }
+        return redirect()->route('student.index');
+    }
 }

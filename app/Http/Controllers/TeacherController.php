@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\User;
 use App\Models\Grade;
+use App\Models\Stage;
 use App\Models\Cluster;
 use App\Models\Student;
 use App\Models\Teacher;
@@ -116,6 +117,8 @@ class TeacherController extends Controller
         } else {
             $students = null;
         }
+
+        // dd($students);
         return view('teacher.guru.cluster', compact('students', 'teacher', 'komponens'));
     }
 
@@ -134,5 +137,34 @@ class TeacherController extends Controller
         }
 
         return view('teacher.walas.grade', compact('students', 'teacher', 'komponens'));
+    }
+
+    // assign cluster dari page teacher
+    public function assignCluster()
+    {
+        $user_id = Auth::user()->id;
+        $teacher = Teacher::where('user_id', $user_id)->first();
+        $students = Student::where('cluster_id', null)->orWhere('stage_id', null)->get();
+        $stages = Stage::all();
+        return view('teacher.assignCluster.assignCluster', compact('students', 'stages', 'teacher'));
+    }
+
+    public function storeAssignCluster(Request $request)
+    {
+        $cluster_id = $request->cluster_id;
+        $datas = $request->input;
+        $stage_id = $request->stage_id;
+
+        foreach ($datas as $data) {
+            $id = $data['id'];
+
+            if (isset($data['check'])  == 'on') {
+                Student::where('id', $id)->update([
+                    'cluster_id' => $cluster_id,
+                    'stage_id' => $stage_id
+                ]);
+            }
+        }
+        return redirect()->route('student.cluster');
     }
 }

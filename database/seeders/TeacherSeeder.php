@@ -18,9 +18,9 @@ class TeacherSeeder extends Seeder
         //     'name' => 'walas',
         // ]);
 
-        Teacher::create([
-            'user_id' => '2',
-            'name' => 'guru',
-        ]);
+        // Teacher::create([
+        //     'user_id' => '2',
+        //     'name' => 'guru',
+        // ]);
     }
 }
