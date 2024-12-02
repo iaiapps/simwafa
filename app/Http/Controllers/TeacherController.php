@@ -167,4 +167,13 @@ class TeacherController extends Controller
         }
         return redirect()->route('student.cluster');
     }
+
+    public function deleteclusterstudent($id)
+    {
+        Student::where('id', $id)->update([
+            'cluster_id' => NULL,
+
+        ]);
+        return redirect()->back();
+    }
 }

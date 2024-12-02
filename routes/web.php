@@ -73,6 +73,8 @@ Route::middleware('auth')->group(function () {
         // assigncluster
         Route::get('t_assigncluster', [TeacherController::class, 'assignCluster'])->name('tassign.cluster');
         Route::put('t_assigncluster', [TeacherController::class, 'storeAssignCluster'])->name('tassign.cluster');
+        // delete student cluster
+        Route::delete('t_assigncluster/{id}', [TeacherController::class, 'deleteclusterstudent'])->name('tdestroy.cluster');
 
         // nilai
         Route::get('evalindex', [EvaluationController::class, 'evalIndex'])->name('eval.index');
