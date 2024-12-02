@@ -92,7 +92,7 @@
 
                         <div class="mb-3">
                             <button type="submit" class="btn btn-success">
-                                Tambah Nilai
+                                Simpan Nilai
                             </button>
                         </div>
                     </form>
