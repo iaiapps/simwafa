@@ -10,8 +10,8 @@
                 <div class="modal-body">
                     @csrf
                     <div class="mb-3">
-                        <label for="name_komp" class="form-label">Nama Jilid</label>
-                        <input id="name_komp" type="text" class="form-control" name="name_komp"
+                        <label for="name_stage" class="form-label">Nama Jilid</label>
+                        <input id="name_stage" type="text" class="form-control" name="name_stage"
                             value="{{ old('name') }}">
                     </div>
                 </div>
