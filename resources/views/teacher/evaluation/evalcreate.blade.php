@@ -73,7 +73,7 @@
                                                     value="{{ $student->name }}" readonly disabled> --}}
                                             </td>
                                             {{-- <td>{{ $student->grade->name_grade }}</td> --}}
-                                            <td style="width: 80px">
+                                            <td class="lebar">
                                                 <input id="nilai" type="number" class="form-control"
                                                     name="nilai[{{ $student->id }}]" min=0 max=100>
                                             </td>
@@ -104,10 +104,21 @@
             @endif
         </div>
     @endif
-
-
 @endsection
 
+@push('css')
+    <style>
+        .lebar {
+            width: 150px
+        }
+
+        @media(max-width:800px) {
+            .lebar {
+                width: 85px
+            }
+        }
+    </style>
+@endpush
 @include('layouts.partials.scripts')
 @push('scripts')
     <script>

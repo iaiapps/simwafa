@@ -161,11 +161,11 @@ class EvaluationController extends Controller
         $student_id = $request->student_id;
         $komponen_id = $request->komponen_id;
         $nilai = $request->nilai;
-        // dd($request->all());
+
         foreach ($student_id as $sid) {
             $data = Evaluation::where('student_id', $sid)
                 ->where('komponen_id', $komponen_id)->first();
-
+            // dd($data);
             if (!$data) {
                 $data = [
                     'student_id' => $student_id[$sid],
@@ -174,11 +174,24 @@ class EvaluationController extends Controller
                 ];
                 Evaluation::create($data);
             } else {
-                return redirect()->route('student.evaluation')->with('message', 'nilai sudah ada');
+                $ini = Evaluation::where('student_id', $sid)->where('komponen_id', $komponen_id)->first();
+                $ini->update(
+                    ['nilai' => $nilai[$sid]]
+                );
             }
         }
 
-        return redirect()->route('student.evaluation')->with('message', 'nilai berhasil ditambahkan');
+        return redirect()->route('student.evaluation')->with('message', 'nilai berhasil ditambah dan diupdate');
+
+        // foreach ($student_id as $sid) {
+        //     $data = Evaluation::where('student_id', $sid)
+        //         ->where('komponen_id', $komponen_id)->first();
+        //     if (!$data) {
+        //         return redirect()->route('student.evaluation')->with('message', 'nilai berhasil ditambahkan');
+        //     } else {
+        //         return redirect()->route('student.evaluation')->with('message', 'nilai berhasil diupdate');
+        //     }
+        // }
     }
 
     public function evalStudentShow($id)
