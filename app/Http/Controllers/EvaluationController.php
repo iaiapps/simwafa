@@ -29,14 +29,18 @@ class EvaluationController extends Controller
 
         $komponens = Komponen::all();
 
-        if ($request->grade_id == 0 || $request->grade_id == null) {
+        if ($request->grade_id == null) {
             $students = null;
+            $grade_name = null;
+        } elseif ($request->grade_id == 'all') {
+            $students = Student::all();
             $grade_name = null;
         } else {
             $students = Student::where('grade_id', $request->grade_id)->get();
             $grade_name = Grade::where('id', $request->grade_id)->first();
         }
 
+        // return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'komponens'));
         return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'grade_name', 'komponens'));
     }
 

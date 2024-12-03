@@ -14,7 +14,7 @@
                 <div class="input-group mb-3">
                     <select name="grade_id" id="grade" class="form-select">
                         <option selected disabled>-- pilih kelas --</option>
-                        {{-- <option value="0">semua kelas</option> --}}
+                        <option value="all">Semua kelas</option>
                         @foreach ($grades as $grade)
                             <option value="{{ $grade->id }}">{{ $grade->name_grade }}</option>
                         @endforeach
@@ -35,14 +35,19 @@
                 <a href="{{ route('evaluation.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
             </div> --}}
 
-            <p class="text-center mb-0 fs-5">{{ $grade_name->name_grade }}</p>
+            @if ($grade_name == null)
+                <p class="text-center mb-0 fs-5">Semua Kelas</p>
+            @else
+                <p class="text-center mb-0 fs-5">{{ $grade_name->name_grade }}</p>
+            @endif
             <hr class="mb-3">
             <div class="table-responsive">
-                <table id="" class="table table-bordered">
+                <table id="table" class="table table-bordered">
                     <thead>
                         <tr class="align-middle text-center">
                             <th>No</th>
                             <th>Siswa</th>
+                            <th>Kelas</th>
                             <th>Kelompok</th>
                             @foreach ($komponens->sortBy('komponen_id') as $komponen)
                                 <th> {{ $komponen->name_komp }}</th>
@@ -56,6 +61,7 @@
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
                                 <td>{{ $student->name }} </td>
+                                <td>{{ $student->grade->name_grade ?? 'belum ditentukan ' }}</td>
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan ' }}</td>
 
                                 @foreach ($komponens as $komponen)

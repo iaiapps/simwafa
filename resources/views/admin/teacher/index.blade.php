@@ -4,8 +4,9 @@
 
 @section('content')
     <div class="d-block">
-        <a href="{{ route('teacher.create', ['bagian' => 'grade']) }}" class="btn btn-primary mb-3">Tentukan Kelas</a>
+        <a href="{{ route('teacher.create', ['bagian' => 'grade']) }}" class="btn btn-primary mb-3">Tentukan Wali Kelas</a>
         <a href="{{ route('teacher.create', ['bagian' => 'cluster']) }}" class="btn btn-primary mb-3">Tentukan Kelompok</a>
+        <a href="{{ route('cluster.index') }}" class="btn btn-primary mb-3">Lihat banyaknya Kelompok</a>
     </div>
     <div class="card rounded p-3">
         <div class="table-responsive">

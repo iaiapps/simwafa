@@ -17,13 +17,6 @@
     @endif
 
     @if ($akses == 'Guru')
-        {{-- <div class="mb-3 clearfix">
-            <a href="{{ route('akses.walas') }}" class="btn btn-primary float-end">ganti akses ke Wali Kelas</a>
-        </div>
-        <div class="alert alert-primary">
-            <span>Anda Login sebagai {{ $akses }}</span>
-        </div> --}}
-
         <div class="row mb-3 align-items-center gy-3">
             <div class="col-md-9 col-12">
                 <p class="text-center bg-warning p-2 rounded m-0">
@@ -33,6 +26,26 @@
             <div class="col-md-3 col-12">
                 <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">ganti akses ke
                     Wali Kelas</a>
+            </div>
+        </div>
+        <div class="row px-3 mb-3">
+            <div class="col-12 col-md-4 bg-primary p-1">
+                <a href="{{ route('student.cluster') }}" class="nav-link btn btn-outline text-white">
+                    <i class="bi bi-people fs-3"></i>
+                    <span class="d-block">Data kelompok</span>
+                </a>
+            </div>
+            <div class="col-12 col-md-4 bg-warning p-1">
+                <a href="{{ route('eval.index') }}" class="nav-link btn btn-outline text-dark">
+                    <i class="bi bi-journal-check fs-3"></i>
+                    <span class="d-block">Nilai Siswa</span>
+                </a>
+            </div>
+            <div class="col-12 col-md-4 bg-danger p-1">
+                <a href="{{ route('student.evaluation') }}" class="nav-link btn btn-outline text-white">
+                    <i class="bi bi-list-check fs-3"></i>
+                    <span class="d-block">Penilaian</span>
+                </a>
             </div>
         </div>
     @elseif ($akses == 'Wali Kelas')
@@ -48,6 +61,8 @@
             </div>
         </div>
     @endif
+
+
 
     <div class="card rounded p-3 mb-3">
         <p class="fs-4 text-center m-0">
