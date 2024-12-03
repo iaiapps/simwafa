@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Grade;
+use App\Models\Cluster;
 use App\Models\Student;
 use App\Models\Teacher;
 use Illuminate\Http\Request;
@@ -31,9 +33,11 @@ class HomeController extends Controller
 
         $teacher = Teacher::all();
         $student = Student::all();
+        $grade = Grade::all();
+        $cluster = Cluster::all();
 
         if ($user->hasRole('admin')) {
-            return view('admin.home', compact('teacher', 'student'));
+            return view('admin.home', compact('teacher', 'student', 'grade', 'cluster'));
         } elseif ($user->hasRole('guru')) {
             return view('teacher.home', compact('teacher'));
         }

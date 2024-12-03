@@ -4,7 +4,7 @@
 
 @section('content')
 
-    <a href="{{ route('grade.create') }}" class="btn btn-primary mb-3">tambah kelas</a>
+    <a href="{{ route('grade.create') }}" class="btn btn-primary mb-3"> <i class="bi bi-plus-circle"></i> Tambah kelas</a>
 
     <div class="card rounded p-3">
         <div class="table-responsive">

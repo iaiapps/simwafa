@@ -6,7 +6,7 @@
 
     <!-- Button trigger modal -->
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createstage">
-        Tambah jilid
+        <i class="bi bi-plus-circle"></i> Tambah jilid
     </button>
 
     <div class="card rounded p-3">
