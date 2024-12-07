@@ -13,10 +13,10 @@
             <p class="text-center fs-5 mb-1 rounded">Siswa : {{ $teacher->grade->name_grade }}</p>
             <p class="text-center m-0">Data khusus Wali Kelas</p>
             <hr class="mb-4">
-            <small class="mb-2">*geser tabel jika terpotong</small>
+            <small class="mb-1 mx-2">*geser tabel jika terpotong</small>
 
             <div class="table-responsive">
-                <table class="table table-bordered ">
+                <table id="tablee" class="table table-bordered ">
                     <thead class="text-center align-middle">
                         <tr>
                             <th scope="col">#</th>
@@ -27,10 +27,10 @@
                                 <th> {{ $komponen->name_komp }}</th>
                             @endforeach
                             <th scope="col">Rerata</th>
-                            {{-- <th scope="col">Action</th> --}}
+                            <th scope="col">Action</th>
 
                         </tr>
-                        <tr></tr>
+
                     </thead>
                     <tbody>
                         @forelse ($students as $student)
@@ -46,10 +46,10 @@
                                 @endforeach
 
                                 <td class="text-center"> {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
-                                {{-- <td>
+                                <td>
                                     <a href="{{ route('student.evaluation.show', $student->id) }}"
                                         class="btn btn-warning btn-sm">detail</a>
-                                </td> --}}
+                                </td>
                             </tr>
                         @empty
                             <tr>
@@ -70,14 +70,24 @@
 @endsection
 @push('css')
     <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
 @endpush
 @push('scripts')
     <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
     <script>
+        var sites = {!! json_encode($teacher->grade->name_grade, JSON_HEX_TAG) !!};
         $(document).ready(function() {
-            $('#table').DataTable({
-                "pageLength": 50
+            $('#tablee').DataTable({
+                "pageLength": 50,
+                "buttons": [{
+                    extend: 'excelHtml5',
+                    text: '<i class="bi bi-file-earmark-excel"></i> Download data excel',
+                    titleAttr: 'Excel',
+                    className: 'btn btn-primary btn-sm',
+                    title: 'Data nilai Wafa ' + sites
+                }, ],
+                "layout": {
+                    topStart: 'buttons'
+                }
             });
         });
     </script>
