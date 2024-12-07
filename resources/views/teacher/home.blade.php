@@ -28,21 +28,21 @@
                     Wali Kelas</a>
             </div>
         </div>
-        <div class="row px-3 mb-3">
-            <div class="col-12 col-md-4 bg-primary p-1">
-                <a href="{{ route('student.cluster') }}" class="nav-link btn btn-outline text-white">
+        <div class="row mb-3 gx-2">
+            <div class="col-12 col-md-4">
+                <a href="{{ route('student.cluster') }}" class="p-2 bg-primary nav-link btn btn-outline text-white">
                     <i class="bi bi-people fs-3"></i>
                     <span class="d-block">Data kelompok</span>
                 </a>
             </div>
-            <div class="col-12 col-md-4 bg-warning p-1">
-                <a href="{{ route('eval.index') }}" class="nav-link btn btn-outline text-dark">
+            <div class="col-12 col-md-4">
+                <a href="{{ route('eval.index') }}" class="p-2 bg-warning nav-link btn btn-outline text-dark">
                     <i class="bi bi-journal-check fs-3"></i>
                     <span class="d-block">Nilai Siswa</span>
                 </a>
             </div>
-            <div class="col-12 col-md-4 bg-danger p-1">
-                <a href="{{ route('student.evaluation') }}" class="nav-link btn btn-outline text-white">
+            <div class="col-12 col-md-4">
+                <a href="{{ route('student.evaluation') }}" class="p-2 bg-danger nav-link btn btn-outline text-white">
                     <i class="bi bi-list-check fs-3"></i>
                     <span class="d-block">Penilaian</span>
                 </a>
@@ -58,6 +58,14 @@
             <div class="col-md-3 col-12">
                 <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">ganti akses ke
                     Guru</a>
+            </div>
+        </div>
+        <div class="row mb-3">
+            <div class="col-12 ">
+                <a href="{{ route('student.grade') }}" class="p-2 bg-success nav-link btn btn-outline text-white">
+                    <i class="bi bi-journal-check fs-3"></i>
+                    <span class="d-block">Nilai Siswa</span>
+                </a>
             </div>
         </div>
     @endif
