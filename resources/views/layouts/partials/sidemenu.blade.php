@@ -75,6 +75,16 @@
                         </a>
                     </li>
                     <li class="nav-item">
+                        <a href="{{ route('journal.index') }}"
+                            class="nav-link text-center text-sm-start text-white
+                    {{ Route::currentRouteName() == 'journal.index' ? 'active' : '' }}">
+                            <i class="bi bi-journals menu-icon"></i>
+                            <span class="ms-2 d-none d-sm-inline">Jurnal</span>
+                            <br class="d-sm-none d-inline">
+                            <small class="m-0 p-0 d-sm-none d-sm-block">Jurnal</small>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('student.index') }}"
                             class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'student.index' ? 'active' : '' }}">
@@ -162,6 +172,16 @@
                                 <span class="ms-2 d-none d-sm-inline">Penilaian</span>
                                 <br class="d-sm-none d-inline">
                                 <small class="m-0 p-0 d-sm-none d-sm-block">Penilian</small>
+                            </a>
+                        </li>
+                        <li class="nav-item">
+                            <a href="{{ route('teacher.journal') }}"
+                                class="nav-link text-center text-sm-start text-white
+                    {{ Route::currentRouteName() == 'teacher.journal' ? 'active' : '' }}">
+                                <i class="bi bi-journals menu-icon"></i>
+                                <span class="ms-2 d-none d-sm-inline">Jurnal</span>
+                                <br class="d-sm-none d-inline">
+                                <small class="m-0 p-0 d-sm-none d-sm-block">Jurnal</small>
                             </a>
                         </li>
                     @endif

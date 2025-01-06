@@ -6,7 +6,6 @@
 @endpush
 @push('scripts')
     <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
-    <script src="{{ asset('assets/arrow/arrow-table.js') }}"></script>
     <script src="{{ asset('assets/select2/select2.min.js') }}"></script>
     {{-- <script src="{{ asset('assets/simplecal/calender.js') }}"></script> --}}
 @endpush

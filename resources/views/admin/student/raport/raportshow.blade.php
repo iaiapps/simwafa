@@ -103,9 +103,9 @@
                     <div class="row text-center">
                         <div class="col">
                             <p class="mb-1 text-white">btaq</p>
-                            <p>Koordinator BTAQ</p>
+                            <p>Waka Keagamaan</p>
                             <br> <br>
-                            <p>({{ $student->grade->teacher->name }})</p>
+                            <p>(Ahmad Fauzan Awaris)</p>
                         </div>
                         <div class="col"></div>
                         <div class="col">

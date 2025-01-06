@@ -30,4 +30,9 @@ class Teacher extends Model
     {
         return $this->belongsTo(Cluster::class);
     }
+
+    public function journal()
+    {
+        return $this->hasMany(Journal::class);
+    }
 }

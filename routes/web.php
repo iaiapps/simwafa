@@ -12,7 +12,7 @@ use App\Http\Controllers\StudentController;
 use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KomponenController;
 use App\Http\Controllers\EvaluationController;
-
+use App\Http\Controllers\JournalController;
 
 /*
 |--------------------------------------------------------------------------
@@ -68,6 +68,10 @@ Route::middleware('auth')->group(function () {
 
         // raport
         Route::get('showraport/{id}', [StudentController::class, 'viewRaport'])->name('show.raport');
+
+        // jurnal guru
+        Route::get('jurnal', [JournalController::class, 'index'])->name('journal.index');
+        Route::get('jurnal/{id}', [JournalController::class, 'showJournal'])->name('journal.show');
     });
 
     Route::middleware('role:guru')->group(function () {
@@ -90,5 +94,12 @@ Route::middleware('auth')->group(function () {
 
         // akses walas
         Route::get('akses-walas', [HomeController::class, 'changeAccess'])->name('akses.walas');
+
+        // akses jurnal
+        Route::get('teacher-journal', [JournalController::class, 'show'])->name('teacher.journal');
+        Route::get('journal-create/{teacher_id}', [JournalController::class, 'create'])->name('journal.create');
+        Route::post('journal-create', [JournalController::class, 'store'])->name('journal.store');
+        Route::get('journal-edit/{journal}/edit', [JournalController::class, 'edit'])->name('journal.edit');
+        Route::put('journal-edit/{journal}', [JournalController::class, 'update'])->name('journal.store');
     });
 });

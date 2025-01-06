@@ -1,0 +1,48 @@
+@extends('layouts.app')
+
+@section('title', 'Buat Jurnal Mengajar')
+
+@section('content')
+    <div class="card">
+        <div class="card-body mt-3">
+            <form method="POST" action="{{ route('journal.store') }}">
+                @csrf
+                <input type="text" value="{{ $teacher_id }}" name="teacher_id" readonly>
+                <div class="mb-3">
+                    <label for="date" class="form-label">Tanggal</label>
+                    <input type="date" name="date" placeholder="Tanggal" id="date" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="tm" class="form-label">Pertemuan ke ...</label>
+                    <input type="text" name="tm" placeholder="Pertemuan ke ..." id="tm" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="book" class="form-label">Buku/Surat</label>
+                    <input type="text" name="book" placeholder="Buku/Surat" id="book" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="pages" class="form-label">Halaman/Ayat</label>
+                    <input type="text" name="pages" placeholder="Halaman/Ayat" id="pages" class="form-control">
+                </div>
+                <div class="mb-3">
+                    <label for="description" class="form-label">Materi</label>
+                    <input type="text" name="description" placeholder="Materi" id="description" class="form-control">
+                </div>
+
+                <button type="submit" class="btn btn-primary">Simpan Data</button>
+            </form>
+        </div>
+    </div>
+@endsection
+
+@include('layouts.partials.scripts')
+@push('scripts')
+    <script>
+        $(document).ready(function() {
+            $('#siswa').select2({
+                theme: 'bootstrap-5'
+            });
+
+        });
+    </script>
+@endpush
