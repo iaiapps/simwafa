@@ -12,7 +12,7 @@
     <hr>
     <a href="{{ route('move.grade') }}" class="btn btn-warning mb-3">Pindahkan Siswa</a>
 
-    <form action="{{ route('deleteAll') }}" method="POST">
+    <form class="d-inline" action="{{ route('deleteAll') }}" method="POST">
         @csrf
         <button onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');" type="submit"
             class="btn btn-danger mb-3">Hapus
@@ -47,8 +47,6 @@
             </div>
         </form>
     </div>
-
-
     <div class="card rounded p-3">
         <div class="table-responsive">
             <table id="table" class="table">
@@ -59,6 +57,7 @@
                         <th scope="col">Kelas</th>
                         <th scope="col">Kelompok</th>
                         <th scope="col">Jilid</th>
+                        <th scope="col">Raport</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>
@@ -70,6 +69,10 @@
                             <td>{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
                             <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</td>
                             <td>{{ $student->stage->name_stage ?? 'belum ditentukan' }}</td>
+                            <td>
+                                <a href="{{ route('show.raport', $student->id) }}"
+                                    class="btn btn-primary btn-sm">raport</a>
+                            </td>
                             <td>
                                 <a href="{{ route('student.edit', $student->id) }}" class="btn btn-warning btn-sm">edit</a>
 

@@ -5,7 +5,7 @@
 @section('content')
 
     {{-- @dd(Auth::user()->hasRole('admin')) --}}
-    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3">tambah user</a>
+    <a href="{{ route('user.create') }}" class="btn btn-primary mb-3"><i class="bi bi-plus-circle"></i> Tambah Guru</a>
 
     <div class="card rounded p-3">
         <div class="table-responsive">

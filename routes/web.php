@@ -65,6 +65,9 @@ Route::middleware('auth')->group(function () {
         Route::post('deletestudentall', [StudentController::class, 'deleteAll'])->name('deleteAll');
         Route::get('movecluster', [StudentController::class, 'moveGrade'])->name('move.grade');
         Route::put('movecluster', [StudentController::class, 'storeMoveGrade'])->name('move.grade');
+
+        // raport
+        Route::get('showraport/{id}', [StudentController::class, 'viewRaport'])->name('show.raport');
     });
 
     Route::middleware('role:guru')->group(function () {

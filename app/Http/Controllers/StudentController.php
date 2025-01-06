@@ -2,10 +2,12 @@
 
 namespace App\Http\Controllers;
 
+use PDO;
 use App\Models\Grade;
 use App\Models\Stage;
 use App\Models\Cluster;
 use App\Models\Student;
+use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -202,5 +204,14 @@ class StudentController extends Controller
             }
         }
         return redirect()->route('student.index');
+    }
+
+    // ini untuk raport
+    // dari admin
+    public function viewRaport($id)
+    {
+        $evaluations = Evaluation::where('student_id', $id)->orderBy('student_id')->get();
+        $student = Student::where('id', $id)->first();
+        return view('admin.student.raport.raportshow', compact('evaluations', 'student'));
     }
 }
