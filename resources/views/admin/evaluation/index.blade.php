@@ -14,7 +14,6 @@
                 <div class="input-group mb-3">
                     <select name="year_id" id="year" class="form-select">
                         <option selected disabled>-- pilih tahun ajaran --</option>
-                        <option value="all">Semua Tahun</option>
                         @foreach ($years as $year)
                             <option value="{{ $year->id }}">{{ $year->year . ' - ' . $year->description }}</option>
                         @endforeach
@@ -40,13 +39,12 @@
         </div>
     @else
         <div class="card p-3">
-
-            @if ($grade_name == null && $year_name == null)
-                <p class="text-center mb-0 fs-5">Semua Kelas</p>
-                <p class="mb-1">Data nilai tahun ajaran : semua tahun</p>
+            @if ($grade_name == null)
+                <p class="text-center mb-0 fs-5">Nilai Semua Kelas</p>
+                <p class="mb-0">Data nilai tahun ajaran : {{ $year_name->year . ' - ' . $year_name->description }}</p>
             @else
                 <p class="text-center mb-0 fs-5">{{ $grade_name->name_grade }}</p>
-                <p class="mb-1">Data nilai tahun ajaran : {{ $year_name->year . ' - ' . $year_name->description }}</p>
+                <p class="mb-0">Data nilai tahun ajaran : {{ $year_name->year . ' - ' . $year_name->description }}</p>
             @endif
             <hr class="mb-3">
 
@@ -74,19 +72,13 @@
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan ' }}</td>
 
                                 @foreach ($komponens as $komponen)
-                                    @if ($year_name == null)
-                                        <td class="mb-0">
-                                            {{ $student->evaluation->where('komponen_id', $komponen->id)->first()?->nilai }}
-                                        </td>
-                                    @else
-                                        <td class="mb-0">
-                                            {{ $student->evaluation->where('komponen_id', $komponen->id)->where('year_id', $year_name->id)->first()?->nilai }}
-                                        </td>
-                                    @endif
+                                    <td class="mb-0 text-center">
+                                        {{ $student->evaluation->where('komponen_id', $komponen->id)->where('year_id', $year_name->id)->first()->nilai ?? '-' }}
+                                    </td>
                                 @endforeach
-
                                 <td class="text-center">
-                                    {{ $student->evaluation->avg('nilai') ?? 'nilai belum ada' }}</td>
+                                    {{ $student->evaluation->where('year_id', $year_name->id)->avg('nilai') ?? 'nilai belum ada' }}
+                                </td>
                                 <td>
                                     <form onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');"
                                         action="{{ route('evaluation.destroy', ['del' => $student->id, 'grade_id' => request()->get('grade_id')]) }}"
