@@ -64,4 +64,11 @@ class YearController extends Controller
     {
         //
     }
+
+    // handle select year
+    public function indexYear()
+    {
+        $years = Year::all();
+        return view('admin.year.indexyear', compact('years'));
+    }
 }

@@ -2,6 +2,7 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Year;
 use App\Models\Grade;
 use App\Models\Cluster;
 use App\Models\Student;
@@ -10,11 +11,11 @@ use App\Models\Komponen;
 use App\Models\Evaluation;
 use Illuminate\Http\Request;
 use Illuminate\Support\Carbon;
+use Mockery\Generator\Parameter;
 use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
-use Illuminate\Database\Eloquent\Collection;
 use Illuminate\Support\Facades\Redirect;
-use Mockery\Generator\Parameter;
+use Illuminate\Database\Eloquent\Collection;
 
 class EvaluationController extends Controller
 {
@@ -24,24 +25,37 @@ class EvaluationController extends Controller
     public function index(Request $request)
     {
         $grades = Grade::all();
+        $years = Year::all();
         $komponen_id = Komponen::get('id');
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
-
         $komponens = Komponen::all();
 
-        if ($request->grade_id == null) {
+        // if ($request->grade_id == null && $request->year_id == null) {
+        //     $students = null;
+        //     $grade_name = null;
+        // } elseif ($request->grade_id == 'all') {
+        //     $students = Student::all();
+        //     $grade_name = null;
+        // } else {
+        //     $students = Student::where('grade_id', $request->grade_id)->get();
+        //     $grade_name = Grade::where('id', $request->grade_id)->first();
+        // }
+
+        if ($request->grade_id == null && $request->year_id == null) {
             $students = null;
             $grade_name = null;
+            $year_name = null;
         } elseif ($request->grade_id == 'all') {
             $students = Student::all();
             $grade_name = null;
+            $year_name = null;
         } else {
             $students = Student::where('grade_id', $request->grade_id)->get();
             $grade_name = Grade::where('id', $request->grade_id)->first();
+            $year_name = Year::where('id', $request->year_id)->first();
         }
 
-        // return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'komponens'));
-        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'grade_name', 'komponens'));
+        return view('admin.evaluation.index', compact('grades', 'students', 'data_komponen', 'grade_name', 'komponens', 'years', 'year_name'));
     }
 
     /**

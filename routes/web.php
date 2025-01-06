@@ -76,6 +76,7 @@ Route::middleware('auth')->group(function () {
 
         // tahun ajaran
         Route::resource('year', YearController::class);
+        Route::get('pilih-tahun', [YearController::class, 'indexYear'])->name('index.year');
     });
 
     Route::middleware('role:guru')->group(function () {

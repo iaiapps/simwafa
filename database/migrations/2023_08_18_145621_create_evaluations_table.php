@@ -14,8 +14,8 @@ return new class extends Migration
         Schema::create('evaluations', function (Blueprint $table) {
             $table->id();
             $table->foreignId('komponen_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
-            $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             $table->foreignId('year_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
+            $table->foreignId('student_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             // $table->foreignId('kol_id')->constrained()->onUpdate('cascade')->onDelete('cascade');
             // $table->foreignId('cluster_id')->nullable()->constrained()->onUpdate('cascade')->onDelete('cascade');
             // $table->date('tanggal')->nullable();

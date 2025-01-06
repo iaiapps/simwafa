@@ -8,9 +8,18 @@
 
 @section('content')
     <div class="card p-3 mb-3">
-        <p>filter data berdasarkan kelas </p>
+        <p>filter data berdasarkan tahun ajaran dan kelas </p>
         <form action="{{ route('evaluation.index') }}" method="get">
             <div class="row">
+                <div class="input-group mb-3">
+                    <select name="year_id" id="year" class="form-select">
+                        <option selected disabled>-- pilih tahun ajaran --</option>
+                        <option value="all">Semua Tahun</option>
+                        @foreach ($years as $year)
+                            <option value="{{ $year->id }}">{{ $year->year . ' - ' . $year->description }}</option>
+                        @endforeach
+                    </select>
+                </div>
                 <div class="input-group mb-3">
                     <select name="grade_id" id="grade" class="form-select">
                         <option selected disabled>-- pilih kelas --</option>
@@ -19,28 +28,28 @@
                             <option value="{{ $grade->id }}">{{ $grade->name_grade }}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-primary">filter data</button>
                 </div>
             </div>
+            <button type="submit" class="btn btn-primary">filter data</button>
         </form>
     </div>
 
     @if ($students == null)
         <div class="card p-3">
-            <p class="fs-5 text-center m-0">kelas belum dipilih</p>
+            <p class="fs-5 text-center m-0">tahun ajaran dan kelas belum dipilih</p>
         </div>
     @else
         <div class="card p-3">
-            {{-- <div class="d-block">
-                <a href="{{ route('evaluation.create') }}" class="btn btn-primary mb-3">Tambah Nilai</a>
-            </div> --}}
 
-            @if ($grade_name == null)
+            @if ($grade_name == null && $year_name == null)
                 <p class="text-center mb-0 fs-5">Semua Kelas</p>
+                <p class="mb-1">Data nilai tahun ajaran : semua tahun</p>
             @else
                 <p class="text-center mb-0 fs-5">{{ $grade_name->name_grade }}</p>
+                <p class="mb-1">Data nilai tahun ajaran : {{ $year_name->year . ' - ' . $year_name->description }}</p>
             @endif
             <hr class="mb-3">
+
             <div class="table-responsive">
                 <table id="table" class="table table-bordered">
                     <thead>
@@ -65,9 +74,15 @@
                                 <td>{{ $student->cluster->name_cluster ?? 'belum ditentukan ' }}</td>
 
                                 @foreach ($komponens as $komponen)
-                                    <td class="mb-0">
-                                        {{ $student->evaluation->where('komponen_id', $komponen->id)->first()?->nilai }}
-                                    </td>
+                                    @if ($year_name == null)
+                                        <td class="mb-0">
+                                            {{ $student->evaluation->where('komponen_id', $komponen->id)->first()?->nilai }}
+                                        </td>
+                                    @else
+                                        <td class="mb-0">
+                                            {{ $student->evaluation->where('komponen_id', $komponen->id)->where('year_id', $year_name->id)->first()?->nilai }}
+                                        </td>
+                                    @endif
                                 @endforeach
 
                                 <td class="text-center">
