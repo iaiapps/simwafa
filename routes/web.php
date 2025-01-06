@@ -13,6 +13,7 @@ use App\Http\Controllers\TeacherController;
 use App\Http\Controllers\KomponenController;
 use App\Http\Controllers\EvaluationController;
 use App\Http\Controllers\JournalController;
+use App\Http\Controllers\YearController;
 
 /*
 |--------------------------------------------------------------------------
@@ -72,6 +73,9 @@ Route::middleware('auth')->group(function () {
         // jurnal guru
         Route::get('jurnal', [JournalController::class, 'index'])->name('journal.index');
         Route::get('jurnal/{id}', [JournalController::class, 'showJournal'])->name('journal.show');
+
+        // tahun ajaran
+        Route::resource('year', YearController::class);
     });
 
     Route::middleware('role:guru')->group(function () {
@@ -100,6 +104,6 @@ Route::middleware('auth')->group(function () {
         Route::get('journal-create/{teacher_id}', [JournalController::class, 'create'])->name('journal.create');
         Route::post('journal-create', [JournalController::class, 'store'])->name('journal.store');
         Route::get('journal-edit/{journal}/edit', [JournalController::class, 'edit'])->name('journal.edit');
-        Route::put('journal-edit/{journal}', [JournalController::class, 'update'])->name('journal.store');
+        Route::put('journal-edit/{journal}', [JournalController::class, 'update'])->name('journal.update');
     });
 });

@@ -7,7 +7,7 @@
         <div class="card-body mt-3">
             <form method="POST" action="{{ route('journal.store') }}">
                 @csrf
-                <input type="text" value="{{ $teacher_id }}" name="teacher_id" readonly>
+                <input type="text" value="{{ $teacher_id }}" name="teacher_id" readonly hidden>
                 <div class="mb-3">
                     <label for="date" class="form-label">Tanggal</label>
                     <input type="date" name="date" placeholder="Tanggal" id="date" class="form-control">
@@ -34,15 +34,3 @@
         </div>
     </div>
 @endsection
-
-@include('layouts.partials.scripts')
-@push('scripts')
-    <script>
-        $(document).ready(function() {
-            $('#siswa').select2({
-                theme: 'bootstrap-5'
-            });
-
-        });
-    </script>
-@endpush

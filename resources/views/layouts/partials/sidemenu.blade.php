@@ -24,6 +24,16 @@
                     </li>
 
                     <li class="nav-item">
+                        <a href="{{ route('year.index') }}"
+                            class="nav-link text-center text-sm-start text-white
+                    {{ Route::currentRouteName() == 'year.index' ? 'active' : '' }}">
+                            <i class="bi bi-calendar4-week menu-icon"></i>
+                            <span class="ms-2 d-none d-sm-inline">Tahun Ajaran</span>
+                            <br class="d-sm-none d-inline">
+                            <small class="m-0 p-0 d-sm-none d-sm-block">Tahun</small>
+                        </a>
+                    </li>
+                    <li class="nav-item">
                         <a href="{{ route('grade.index') }}"
                             class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'grade.index' ? 'active' : '' }}">

@@ -8,7 +8,7 @@
             <form method="POST" action="{{ route('journal.store', $journal->id) }}">
                 @csrf
                 @method('PUT')
-                <input type="text" value="{{ $journal->teacher_id }}" name="teacher_id" readonly>
+                <input type="text" value="{{ $journal->teacher_id }}" name="teacher_id" readonly hidden>
                 <div class="mb-3">
                     <label for="date" class="form-label">Tanggal</label>
                     <input type="date" name="date" placeholder="Tanggal" id="date" class="form-control">
