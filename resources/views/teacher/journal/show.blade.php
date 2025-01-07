@@ -34,9 +34,10 @@
                                 <td>{{ $journal->date }}</td>
                                 <td>{{ $journal->tm }}</td>
                                 <td>{{ $journal->book }}</td>
-                                <td>{{ $journal->page }}</td>
+                                <td>{{ $journal->pages }}</td>
                                 <td>{{ $journal->description }}</td>
-                                <td><a href="{{ route('journal.edit', $journal->id) }}">edit</a></td>
+                                <td><a href="{{ route('journal.edit', $journal->id) }}"
+                                        class="btn btn-warning btn-sm">edit</a></td>
                             </tr>
                         @endforeach
 
