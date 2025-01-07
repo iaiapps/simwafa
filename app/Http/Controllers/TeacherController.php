@@ -3,6 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\User;
+use App\Models\Year;
 use App\Models\Grade;
 use App\Models\Stage;
 use App\Models\Cluster;
@@ -123,20 +124,22 @@ class TeacherController extends Controller
     }
 
     // --- handle from walas page --- //
-    public function studentGrade()
+    public function studentGrade(Request $request)
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
         $komponens = Komponen::all();
-
+        $years = Year::all();
         if (isset($teacher->grade->id)) {
             $grade_id = $teacher->grade->id;
             $students = Student::where('grade_id', $grade_id)->get();
+            $year_id = $request->year_id;
         } else {
             $students = null;
+            $year_id = null;
         }
 
-        return view('teacher.walas.grade', compact('students', 'teacher', 'komponens'));
+        return view('teacher.walas.grade', compact('students', 'teacher', 'komponens', 'years', 'year_id'));
     }
 
     // assign cluster dari page teacher

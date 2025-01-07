@@ -117,7 +117,6 @@ class EvaluationController extends Controller
 
 
     // ------------- jika guru belum ditentukan -------------//
-
     public function teacherId()
     {
         $user_id = Auth::user()->id;
@@ -129,23 +128,27 @@ class EvaluationController extends Controller
     }
 
     // --------------- handle from role:guru ---------------//
-    public function evalIndex()
+    public function evalIndex(Request $request)
     {
         // ini cara mengambil parameter dari function lain
         // yang memiliki lebih dari 1 Parameter
         list($teacher, $cluster_id) = $this->teacherId();
         $komponens = Komponen::all();
+        $years = Year::all();
+
 
         if (isset($cluster_id)) {
             $students = Student::where('cluster_id', $cluster_id)->get();
+            $year_id = $request->year_id;
         } else {
             $students = null;
+            $year_id = null;
         }
 
         $komponen_id = Komponen::get('id');
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
 
-        return view('teacher.evaluation.evalindex', compact('students', 'komponens', 'teacher'));
+        return view('teacher.evaluation.evalindex', compact('students', 'komponens', 'teacher', 'years', 'year_id'));
     }
 
     public function evalStudent(Request $request)

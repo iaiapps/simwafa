@@ -13,27 +13,26 @@
             @method('PUT')
 
             <div>
-                <ul class="list-group">
-                    <li class="list-group-item">Gunakan fitur search untuk mencari siswa</li>
-                    <li class="list-group-item">Pilih jilid wafa</li>
-                    <li class="list-group-item">Centang pada kotak</li>
-                    <li class="list-group-item">Klik simpan</li>
+                <ul class="list-group list-group-numbered">
+                    <li class="list-group-item py-1">Pilih jilid BTAQ</li>
+                    <li class="list-group-item py-1">Gunakan fitur "search" untuk mencari siswa</li>
+                    <li class="list-group-item py-1">Centang pada kotak</li>
+                    <li class="list-group-item py-1">Klik "simpan kelompok"</li>
                 </ul>
             </div>
             <hr>
             <input type="text" name="cluster_id" id="" value="{{ $teacher->cluster->id }}" hidden>
 
-            <div class="row mb-4">
-                <label class="col-md-2 col-form-label" for="stage">Jilid</label>
-                <div class="col-md-10">
-                    <select class="form-select" id="stage" name="stage_id">
-                        <option disabled selected>---pilih jilid---</option>
-                        @foreach ($stages as $stage)
-                            <option value="{{ $stage->id }}">{{ $stage->name_stage }}</option>
-                        @endforeach
+            <div class="input-group mb-4">
+                <label class="input-group-text bg-secondary-subtle" for="stage">Jilid BTAQ</label>
 
-                    </select>
-                </div>
+                <select class="form-select" id="stage" name="stage_id">
+                    <option disabled selected>---pilih jilid---</option>
+                    @foreach ($stages as $stage)
+                        <option value="{{ $stage->id }}">{{ $stage->name_stage }}</option>
+                    @endforeach
+                </select>
+
             </div>
 
 
@@ -84,10 +83,7 @@
             width: 30px;
             height: 30px;
             cursor: pointer;
-
-            /* background-color: green; */
             border: 3px solid rgb(0, 102, 255);
-
         }
     </style>
 @endpush
@@ -121,12 +117,6 @@
                     }
                 });
             });
-
-
-            $('#cluster').select2({
-                theme: 'bootstrap-5'
-            });
-
         });
     </script>
 @endpush

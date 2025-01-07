@@ -9,12 +9,11 @@
         <div class="bg-white rounded p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>
             <a href="{{ route('tassign.cluster') }}" class="btn btn-primary">pilih kelompok</a>
-
         </div>
     @else
         <div class="card rounded p-3">
             <div>
-                <a href="{{ route('tassign.cluster') }}" class="btn btn-primary">tambah data siswa dalam kelompok</a>
+                <a href="{{ route('tassign.cluster') }}" class="btn btn-primary">Tambah data siswa dalam kelompok</a>
             </div>
 
             <p class="text-center mb-0 ">Data siswa sesuai kelompok yang telah ditentukan </p>
@@ -30,7 +29,6 @@
                             <th scope="col">Kelas</th>
                             <th scope="col">Jilid</th>
                             <th scope="col">Action</th>
-
                         </tr>
                     </thead>
                     <tbody>
@@ -59,17 +57,3 @@
         </div>
     @endif
 @endsection
-{{-- @push('css')
-    <link rel="stylesheet" href="{{ asset('assets/datatables/datatables.min.css') }}">
-    <link rel="stylesheet" href="{{ asset('css/pagination.css') }}">
-@endpush
-@push('scripts')
-    <script src="{{ asset('assets/datatables/datatables.min.js') }}"></script>
-    <script>
-        $(document).ready(function() {
-            $('#table').DataTable({
-                "pageLength": 50
-            });
-        });
-    </script>
-@endpush --}}
