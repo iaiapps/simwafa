@@ -46,7 +46,7 @@ class YearController extends Controller
      */
     public function edit(Year $year)
     {
-        //
+        return view('admin.year.edit', compact('year'));
     }
 
     /**
@@ -54,7 +54,8 @@ class YearController extends Controller
      */
     public function update(Request $request, Year $year)
     {
-        //
+        $year->update($request->all());
+        return redirect()->route('year.index');
     }
 
     /**
@@ -62,7 +63,8 @@ class YearController extends Controller
      */
     public function destroy(Year $year)
     {
-        //
+        $year->delete();
+        return redirect()->route('year.index');
     }
 
     // handle select year

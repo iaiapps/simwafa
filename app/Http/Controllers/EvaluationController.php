@@ -171,7 +171,8 @@ class EvaluationController extends Controller
 
         $komponens = Komponen::all();
         $komponen_id = Komponen::where('id', $request->komponen_id)->get()->first();
-        return view('teacher.evaluation.evalcreate', compact('komponens', 'students', 'komponen_id'));
+        $years = Year::all();
+        return view('teacher.evaluation.evalcreate', compact('komponens', 'students', 'komponen_id', 'years'));
     }
 
     public function evalStudentStore(Request $request)

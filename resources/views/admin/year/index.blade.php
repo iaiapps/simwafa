@@ -16,7 +16,7 @@
                     <tr>
                         <th scope="col">#</th>
                         <th scope="col">Tahun</th>
-                        <th scope="col">Keterangan</th>
+                        <th scope="col">Semester</th>
                         <th scope="col">Action</th>
                     </tr>
                 </thead>

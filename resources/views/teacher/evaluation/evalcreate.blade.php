@@ -45,6 +45,16 @@
                         <p class="text-center h5 mb-3">Penilian :
                             {{ $komponen_id->name_komp ?? 'Komponen belum dipilih' }}
                         </p>
+                        <div class="mb-3 input-group">
+                            <label for="year" class="input-group-text">Tahun</label>
+                            <select name="year_id" id="year" class="form-select">
+                                <option disabled>---pilih tahun---</option>
+                                @foreach ($years as $year)
+                                    <option value="{{ $year->id }}">{{ $year->year . ' - ' . $year->description }}
+                                    </option>
+                                @endforeach
+                            </select>
+                        </div>
                         <div class="table-responsive">
                             <table class="table table-bordered align-middle">
                                 <thead>
