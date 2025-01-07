@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Year;
 use Illuminate\Http\Request;
+use App\Http\Controllers\EvaluationController;
 
 class YearController extends Controller
 {
@@ -65,12 +66,5 @@ class YearController extends Controller
     {
         $year->delete();
         return redirect()->route('year.index');
-    }
-
-    // handle select year
-    public function indexYear()
-    {
-        $years = Year::all();
-        return view('admin.year.indexyear', compact('years'));
     }
 }

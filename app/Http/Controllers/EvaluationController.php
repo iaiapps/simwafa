@@ -30,17 +30,6 @@ class EvaluationController extends Controller
         $data_komponen = Evaluation::whereIn('komponen_id', $komponen_id)->select('komponen_id')->groupBy('komponen_id')->get();
         $komponens = Komponen::all();
 
-        // if ($request->grade_id == null && $request->year_id == null) {
-        //     $students = null;
-        //     $grade_name = null;
-        // } elseif ($request->grade_id == 'all') {
-        //     $students = Student::all();
-        //     $grade_name = null;
-        // } else {
-        //     $students = Student::where('grade_id', $request->grade_id)->get();
-        //     $grade_name = Grade::where('id', $request->grade_id)->first();
-        // }
-
         if ($request->grade_id == null && $request->year_id == null) {
             $students = null;
             $grade_name = null;
@@ -48,7 +37,7 @@ class EvaluationController extends Controller
         } elseif ($request->grade_id == 'all') {
             $students = Student::all();
             $grade_name = null;
-            $year_name = null;
+            $year_name = Year::where('id', $request->year_id)->first();
         } else {
             $students = Student::where('grade_id', $request->grade_id)->get();
             $grade_name = Grade::where('id', $request->grade_id)->first();
@@ -142,7 +131,7 @@ class EvaluationController extends Controller
     // --------------- handle from role:guru ---------------//
     public function evalIndex()
     {
-        // ini cara mengambil parameter dari function lain 
+        // ini cara mengambil parameter dari function lain
         // yang memiliki lebih dari 1 Parameter
         list($teacher, $cluster_id) = $this->teacherId();
         $komponens = Komponen::all();
