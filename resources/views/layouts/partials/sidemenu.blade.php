@@ -43,7 +43,7 @@
                             <small class="m-0 p-0 d-sm-none d-sm-block">Kelas</small>
                         </a>
                     </li>
-                    {{-- <li class="nav-item">
+                    <li class="nav-item">
                         <a href="{{ route('cluster.index') }}"
                             class="nav-link text-center text-sm-start text-white
                     {{ Route::currentRouteName() == 'cluster.index' ? 'active' : '' }}">
@@ -52,7 +52,7 @@
                             <br class="d-sm-none d-inline">
                             <small class="m-0 p-0 d-sm-none d-sm-block">Klmpk</small>
                         </a>
-                    </li> --}}
+                    </li>
                     <li class="nav-item">
                         <a href="{{ route('komponen.index') }}"
                             class="nav-link text-center text-sm-start text-white

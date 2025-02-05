@@ -5,7 +5,7 @@
 @section('content')
     <div class="card">
         <div class="card-body mt-3">
-            <form method="POST" action="{{ route('journal.store', $journal->id) }}">
+            <form method="POST" action="{{ route('journal.update', $journal->id) }}">
                 @csrf
                 @method('PUT')
                 <input type="text" value="{{ $journal->teacher_id }}" name="teacher_id" readonly hidden>

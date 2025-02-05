@@ -19,7 +19,7 @@
                     <thead>
                         <tr>
                             <th>No</th>
-                            <th>Tanggal</th>
+                            <th>Hari/Tanggal</th>
                             <th>Pertemuan Ke</th>
                             <th>Buku/Surat</th>
                             <th>Halaman/Ayat</th>
@@ -31,7 +31,7 @@
                         @foreach ($journals as $journal)
                             <tr>
                                 <td>{{ $loop->iteration }}</td>
-                                <td>{{ $journal->date }}</td>
+                                <td>{{ \Carbon\carbon::parse($journal->date)->isoFormat('dddd, DD MMMM YYYY') }}</td>
                                 <td>{{ $journal->tm }}</td>
                                 <td>{{ $journal->book }}</td>
                                 <td>{{ $journal->pages }}</td>
