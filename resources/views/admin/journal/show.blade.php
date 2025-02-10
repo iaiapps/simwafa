@@ -23,7 +23,7 @@
                             <th>Buku/Surat</th>
                             <th>Halaman/Ayat</th>
                             <th>Materi</th>
-                            <th>Action</th>
+                            {{-- <th>Action</th> --}}
                         </tr>
                     </thead>
                     <tbody>
@@ -33,9 +33,9 @@
                                 <td>{{ $journal->date }}</td>
                                 <td>{{ $journal->tm }}</td>
                                 <td>{{ $journal->book }}</td>
-                                <td>{{ $journal->page }}</td>
+                                <td>{{ $journal->pages }}</td>
                                 <td>{{ $journal->description }}</td>
-                                <td><a href="http://">edit hapus</a></td>
+                                {{-- <td><a href="http://">edit hapus</a></td> --}}
                             </tr>
                         @endforeach
 

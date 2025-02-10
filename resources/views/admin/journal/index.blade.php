@@ -11,6 +11,7 @@
                         <th>No</th>
                         <th>Guru</th>
                         <th>Kelompok</th>
+                        <th>Jurnal</th>
                         <th> Action </th>
                     </tr>
                 </thead>
@@ -20,8 +21,11 @@
                             <td>{{ $loop->iteration }}</td>
                             <td>{{ $teacher->name }} </td>
                             <td>{{ $teacher->cluster->name_cluster ?? 'belum ditentukan ' }}</td>
+                            <td class="text-center">{{ $teacher->journal->count() }}</td>
+
                             <td>
-                                <a href="{{ route('journal.show', $teacher->id) }}">lihat jurnal</a>
+                                <a href="{{ route('journal.show', $teacher->id) }}" class="btn btn-primary btn-sm">lihat
+                                    jurnal</a>
                             </td>
                         </tr>
                     @empty
