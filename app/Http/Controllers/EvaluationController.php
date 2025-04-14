@@ -16,6 +16,7 @@ use Illuminate\Support\Facades\DB;
 use Illuminate\Support\Facades\Auth;
 use Illuminate\Support\Facades\Redirect;
 use Illuminate\Database\Eloquent\Collection;
+use Spatie\FlareClient\View;
 
 class EvaluationController extends Controller
 {
@@ -169,23 +170,26 @@ class EvaluationController extends Controller
 
     public function evalStudentStore(Request $request)
     {
+        // dd($request->all());
         $student_id = $request->student_id;
         $komponen_id = $request->komponen_id;
         $nilai = $request->nilai;
+        $year = $request->year_id;
 
         foreach ($student_id as $sid) {
             $data = Evaluation::where('student_id', $sid)
-                ->where('komponen_id', $komponen_id)->first();
+                ->where('komponen_id', $komponen_id)->where('year_id', $year)->first();
             // dd($data);
             if (!$data) {
                 $data = [
                     'student_id' => $student_id[$sid],
                     'komponen_id' => $komponen_id,
-                    'nilai' => $nilai[$sid]
+                    'nilai' => $nilai[$sid],
+                    'year_id' => $year
                 ];
                 Evaluation::create($data);
             } else {
-                $ini = Evaluation::where('student_id', $sid)->where('komponen_id', $komponen_id)->first();
+                $ini = Evaluation::where('student_id', $sid)->where('komponen_id', $komponen_id)->where('year_id', $year)->first();
                 $ini->update(
                     ['nilai' => $nilai[$sid]]
                 );
@@ -209,5 +213,42 @@ class EvaluationController extends Controller
     {
         $evaluations = Evaluation::where('student_id', $id)->orderBy('student_id')->get();
         return view('teacher.evaluation.evalshow', compact('evaluations'));
+    }
+
+    // ----------------- coba ----------------- //
+    public function cobaNilai()
+    {
+        list($teacher, $cluster_id) = $this->teacherId();
+        $students = Student::where('cluster_id', $cluster_id)->get();
+        return view('admin.evaluation.cobanilai', compact('students'));
+    }
+    public function saveGrades(Request $request)
+    {
+        // Validasi input
+        $request->validate([
+            'siswa.*.nama' => 'required|string',
+            'siswa.*.matematika' => 'required|numeric|min:0|max:100',
+            'siswa.*.inggris' => 'required|numeric|min:0|max:100',
+            'siswa.*.ipa' => 'required|numeric|min:0|max:100',
+        ]);
+
+        dd($request->all());
+        // Ambil data dari form
+        $siswa = $request->input('siswa');
+
+        // Proses penyimpanan data (contoh: simpan ke database atau tampilkan)
+        foreach ($siswa as $data) {
+            // Contoh: Simpan ke database atau lakukan sesuatu dengan data
+            // Misalnya:
+            // Nilai::create([
+            //     'nama' => $data['nama'],
+            //     'matematika' => $data['matematika'],
+            //     'inggris' => $data['inggris'],
+            //     'ipa' => $data['ipa'],
+            // ]);
+        }
+
+        // Redirect atau tampilkan pesan sukses
+        return redirect()->back()->with('success', 'Data nilai berhasil disimpan!');
     }
 }

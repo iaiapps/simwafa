@@ -3,6 +3,11 @@
 @section('title', 'Data Nilai Siswa')
 
 @section('content')
+
+
+    <a href="{{ route('coba.nilai') }}" class="btn btn-primary mb-3">coba nilai</a>
+
+
     @if ($students->isEmpty())
         <div class="card p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>

@@ -94,6 +94,10 @@ Route::middleware('auth')->group(function () {
         Route::post('eval-student', [EvaluationController::class, 'evalStudentStore'])->name('student.evaluation.store');
         Route::get('eval-show/{id}', [EvaluationController::class, 'evalStudentShow'])->name('student.evaluation.show');
 
+        // coba
+        Route::get('coba-nilai', [EvaluationController::class, 'cobaNilai'])->name('coba.nilai');
+        Route::post('simpan-nilai', [EvaluationController::class, 'saveGrades'])->name('nilai.simpan');
+
         // utk walas lihat siswa
         Route::get('student-grade', [TeacherController::class, 'studentGrade'])->name('student.grade');
 
