@@ -13,11 +13,21 @@
             @method('PUT')
 
             <div>
-                <ul class="list-group list-group-numbered">
-                    <li class="list-group-item py-1">Pilih jilid BTAQ</li>
-                    <li class="list-group-item py-1">Gunakan fitur "search" untuk mencari siswa</li>
-                    <li class="list-group-item py-1">Centang pada kotak</li>
-                    <li class="list-group-item py-1">Klik "simpan kelompok"</li>
+                <ul class="list-group">
+                    <li class="list-group-item py-1">Untuk Menambah Kelompok BTAQ:</li>
+                    <li class="list-group-item py-1 d-flex"><i class="bi bi-arrow-right-circle me-2"></i>Pilih jilid BTAQ</li>
+                    <li class="list-group-item py-1 d-flex"><i class="bi bi-arrow-right-circle me-2"></i>Gunakan fitur
+                        "search"
+                        untuk mencari siswa</li>
+                    <li class="list-group-item py-1 d-flex"><i class="bi bi-arrow-right-circle me-2"></i>Centang pada kotak
+                    </li>
+                    <li class="list-group-item py-1 d-flex"><i class="bi bi-arrow-right-circle me-2"></i>Klik "simpan
+                        kelompok"
+                    </li>
+                    <hr>
+                    <li class="list-group-item py-1 text-danger"> <em>NB: Jika ananda sudah ada kelompoknya,
+                            <br>dan ingin menambahkan ke kelompok Bapak/ Ibu Guru, <br>maka harus di hapus terlebih dahulu
+                            dari kelompok sebelumnya</em></li>
                 </ul>
             </div>
             <hr>
@@ -40,9 +50,9 @@
                 <table id="table" class="table">
                     <thead>
                         <tr>
-                            <th scope="col">#</th>
-                            <th scope="col">Check</th>
-                            <th scope="col">Nama</th>
+                            {{-- <th scope="col">#</th> --}}
+                            <th scope="col" class="fs-4">✅</th>
+                            <th scope="col">Nama/Kelompok</th>
                             <th scope="col">Kelas</th>
                             {{-- <th scope="col">Kelompok</th> --}}
                         </tr>
@@ -52,12 +62,16 @@
                             <tr id="ready">
                                 <input type="text" value="{{ $student->id }}" name="input[{{ $student->id }}][id]"
                                     hidden>
-                                <td>{{ $student->id }}</td>
+                                {{-- <td>{{ $student->id }}</td> --}}
                                 <td>
                                     <input class="form-check-input my-check" type="checkbox"
                                         name="input[{{ $student->id }}][check]">
                                 </td>
-                                <td class="w-50">{{ $student->name ?? 'belum ditentukan' }}</td>
+                                <td class="w-50 text-capitalize">
+                                    {{ $student->name ?? 'belum ditentukan' }} <br> <span
+                                        class="bg-warning badge text-black fw-normal">
+                                        {{ $student->cluster->name_cluster ?? 'belum ditentukan' }}</span>
+                                </td>
                                 <td class="w-50">{{ $student->grade->name_grade ?? 'belum ditentukan' }}</td>
                                 {{-- <td><select class="form-select" name="stage_id[{{ $student->id }}]">
                                         <option selected disabled readonly>--- pilih jilid ---</option>
@@ -80,8 +94,8 @@
     <style>
         .my-check {
             display: inline-block;
-            width: 30px;
-            height: 30px;
+            width: 27px;
+            height: 26px;
             cursor: pointer;
             border: 3px solid rgb(0, 102, 255);
         }
@@ -96,7 +110,7 @@
             });
 
             $('#form').on('submit', function() {
-                // ini untuk mengatasi datatable yang hidden 
+                // ini untuk mengatasi datatable yang hidden
                 // baik pagination atau search
                 // denagan tipe checkboxes
                 // Iterate over all checkboxes in the table
@@ -106,7 +120,7 @@
                     if (!$.contains(document, this)) {
                         // If checkbox is checked
                         if (this.checked) {
-                            // Create a hidden element 
+                            // Create a hidden element
                             $(form).append(
                                 $('<input>')
                                 .attr('type', 'hidden')

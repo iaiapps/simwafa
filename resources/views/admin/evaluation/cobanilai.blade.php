@@ -1,261 +1,180 @@
 @extends('layouts.app')
 
-@section('title', 'Data Nilai Siswa')
-
 @section('content')
-    <button id="clearAllBtn" class="btn btn-danger">Hapus Semua Nilai</button>
+    <div class="container">
+        <h2>Input Nilai Siswa</h2>
 
-    <div class=" card p-3 mt-3">
-        <form action="{{ route('nilai.simpan') }}" method="POST">
+        <form action="{{ route('simpan.nilai') }}" method="POST">
             @csrf
-            <table id="nilaiTable" class="table table-bordered border-secondary">
+            <table id="nilai-table" class="table">
                 <thead>
-                    <tr class="text-center">
-                        <td class="bg-secondary-subtle">Nama siswa</td>
-                        <td class="bg-secondary-subtle">Nilai 1</td>
-                        <td class="bg-secondary-subtle">Nilai 2</td>
-                    </tr>
+                    <td class="bg-secondary-subtle text-center">Nama siswa</td>
+                    @foreach ($nilai as $n)
+                        <td class="bg-secondary-subtle text-center">{{ $n }}</td>
+                    @endforeach
                 </thead>
                 <tbody>
-                    {{-- @dd($students) --}}
-                    @foreach ($students as $student)
+
+                    @foreach ($students as $i => $student)
                         <tr>
-                            <td><input type="text" class="form-control" value="{{ $student->name }}" readonly disabled>
+                            <td class="w-name">
+                                <p class="form-control m-0 bg-secondary-subtle">{{ $student->name }}</p>
                             </td>
-                            <td class="selectable">
-                                <input type="text" value="" class="form-input cell">
-                            </td>
-                            <td class="selectable">
-                                <input type="text" value="" class="form-input cell">
-                            </td>
-                            <td class="selectable">
-                                <input type="text" value="" class="form-input cell">
-                            </td>
+                            @foreach ($nilai as $j => $m)
+                                <td class="text-center" data-row="{{ $i }}" data-col="{{ $j }}">
+                                    <input type="text" name="nilai[{{ $i }}][{{ $j }}]"
+                                        class="nilai-input p-1 rounded w-input" data-row="{{ $i }}"
+                                        data-col="{{ $j }}">
+                                </td>
+                            @endforeach
                         </tr>
                     @endforeach
                 </tbody>
-
             </table>
+            <button type="submit" class="btn btn-primary mt-3">Simpan Nilai</button>
         </form>
     </div>
 
-@endsection
-@push('css')
     <style>
-        .selected {
-            background-color: #c6daf2 !important;
-            /* Warna latar belakang saat terseleksi */
-            border: 1px solid #007bff !important;
-            /* Border saat terseleksi */
+        .w-name {
+            width: 100% !important;
         }
 
-        .form-input {
-            border: none;
-            background: transparent;
-            width: 100%;
-            outline: none;
+        input:focus {
+            background-color: #f2fcfd;
         }
 
-        table {
-            width: 100%;
-            border-collapse: collapse;
-            border: 1px solid #007bff
-        }
-
-        td {
-            padding: 8px;
-            cursor: pointer;
+        td.selected {
+            background-color: #b2ebf2;
+            outline: 1px solid #0097a7;
+            border-radius: 4px;
         }
     </style>
-@endpush
 
-@push('scripts')
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+
     <script>
         $(document).ready(function() {
-            const table = $('#nilaiTable');
-            const cells = $('.selectable');
-            let isCtrlPressed = false;
-            let isDragging = false;
-            let startCell = null;
-            let selectedCells = new Set(); // Menyimpan sel yang terseleksi
-            let currentCell = null; // Sel yang sedang aktif
+            let isMouseDown = false;
+            let selectedCells = [];
 
-            // Fungsi untuk menambahkan atau menghapus seleksi
-            function toggleSelection(cell) {
-                if (selectedCells.has(cell)) {
-                    cell.removeClass('selected');
-                    selectedCells.delete(cell);
-                } else {
-                    cell.addClass('selected');
-                    selectedCells.add(cell);
+            // Navigasi antar input pakai panah
+            $('.nilai-input').on('keydown', function(e) {
+                const row = parseInt($(this).data('row'));
+                const col = parseInt($(this).data('col'));
+                let selector = null;
+
+                switch (e.key) {
+                    case 'ArrowRight':
+                        selector = `[data-row="${row}"][data-col="${col + 1}"]`;
+                        break;
+                    case 'ArrowLeft':
+                        selector = `[data-row="${row}"][data-col="${col - 1}"]`;
+                        break;
+                    case 'ArrowDown':
+                        selector = `[data-row="${row + 1}"][data-col="${col}"]`;
+                        break;
+                    case 'ArrowUp':
+                        selector = `[data-row="${row - 1}"][data-col="${col}"]`;
+                        break;
                 }
+
+                if (selector) {
+                    const nextInput = $(selector);
+                    if (nextInput.length) {
+                        nextInput.focus();
+                        e.preventDefault();
+                        clearSelection();
+                        $('#nilai-table td').removeClass('selected');
+
+                    }
+                }
+            });
+
+            // Fungsi bersihkan seleksi
+            function clearSelection() {
+                $('#nilai-table td').removeClass('selected');
+                selectedCells = [];
             }
 
-            // Fungsi untuk memilih rentang sel
-            function selectRange(start, end) {
-                const startIndex = cells.index(start);
-                const endIndex = cells.index(end);
-                const minIndex = Math.min(startIndex, endIndex);
-                const maxIndex = Math.max(startIndex, endIndex);
+            // Klik pertama: seleksi cell
+            $('#nilai-table td').on('mousedown', function(e) {
+                // Abaikan kalau yang diklik adalah input (biar bisa ketik)
+                if ($(e.target).is('input')) return;
 
-                for (let i = minIndex; i <= maxIndex; i++) {
-                    const cell = $(cells[i]);
-                    cell.addClass('selected');
-                    selectedCells.add(cell);
+                e.preventDefault();
+                isMouseDown = true;
+                clearSelection();
+
+                $(this).addClass('selected');
+                selectedCells.push($(this).find('input'));
+            });
+
+            // Drag ke cell lain
+            $('#nilai-table td').on('mouseover', function(e) {
+                if (isMouseDown) {
+                    if (!$(this).hasClass('selected')) {
+                        $(this).addClass('selected');
+                        selectedCells.push($(this).find('input'));
+                    }
                 }
-            }
+            });
 
-            // Fungsi untuk memindahkan fokus ke sel tertentu
-            function moveFocus(newCell) {
-                if (currentCell) {
-                    currentCell.removeClass('selected');
-                }
-                currentCell = newCell;
-                currentCell.addClass('selected');
-                currentCell.find('.form-input').focus(); // Fokus ke input di dalam sel
-            }
+            // Mouse dilepas
+            $(document).on('mouseup', function() {
+                isMouseDown = false;
+            });
 
-            // Fungsi untuk berpindah sel berdasarkan arah panah
-            function moveCell(direction) {
-                if (!currentCell) return;
-
-                const currentIndex = cells.index(currentCell);
-                let newIndex;
-
-                switch (direction) {
-                    case 'up':
-                        newIndex = currentIndex - 2; // Pindah ke baris atas
-                        break;
-                    case 'down':
-                        newIndex = currentIndex + 2; // Pindah ke baris bawah
-                        break;
-                    case 'left':
-                        newIndex = currentIndex - 1; // Pindah ke sel kiri
-                        break;
-                    case 'right':
-                        newIndex = currentIndex + 1; // Pindah ke sel kanan
-                        break;
-                    default:
-                        return;
-                }
-
-                // Pastikan newIndex berada dalam rentang yang valid
-                if (newIndex >= 0 && newIndex < cells.length) {
-                    moveFocus($(cells[newIndex]));
-                }
-            }
-
-            // Event listener untuk Ctrl key
+            // Tekan tombol Delete
             $(document).on('keydown', function(e) {
-                if (e.key === 'Control') {
-                    isCtrlPressed = true;
-                }
-
-                // Handle tombol panah
-                if (e.key === 'ArrowUp') {
-                    moveCell('up');
-                } else if (e.key === 'ArrowDown') {
-                    moveCell('down');
-                } else if (e.key === 'ArrowLeft') {
-                    moveCell('left');
-                } else if (e.key === 'ArrowRight') {
-                    moveCell('right');
+                // Fokus harus di luar input agar tidak ganggu ngetik
+                if (e.key === 'Delete' ||
+                    e.key === 'Backspace') {
+                    selectedCells.forEach(input => input.val(''));
                 }
             });
 
-            $(document).on('keyup', function(e) {
-                if (e.key === 'Control') {
-                    isCtrlPressed = false;
-                }
-            });
+            // Paste dari Excel (aktifkan saat input fokus)
+            $('.nilai-input').on('paste', function(e) {
+                const clipboardData = e.originalEvent.clipboardData.getData('text');
+                const startInput = $(this);
+                const startRow = parseInt(startInput.data('row'));
+                const startCol = parseInt(startInput.data('col'));
 
-            // Event listener untuk seleksi sel
-            cells.on('mousedown', function(e) {
-                if (isCtrlPressed) {
-                    // Ctrl + Click: Toggle seleksi
-                    toggleSelection($(this));
-                } else {
-                    // Klik biasa: Hapus semua seleksi dan mulai drag
-                    selectedCells.forEach(cell => {
-                        cell.removeClass('selected');
-                    });
-                    selectedCells.clear();
-                    startCell = $(this);
-                    toggleSelection($(this));
-                    isDragging = true;
-                }
-
-                // Set sel yang diklik sebagai sel aktif
-                moveFocus($(this));
-            });
-
-            cells.on('mouseover', function() {
-                if (isDragging && startCell !== $(this)) {
-                    // Hapus semua seleksi sementara
-                    cells.removeClass('selected');
-                    selectedCells.clear();
-
-                    // Pilih rentang dari startCell ke sel ini
-                    selectRange(startCell, $(this));
-                }
-            });
-
-            cells.on('mouseup', function() {
-                isDragging = false;
-                startCell = null;
-            });
-
-            // Event listener untuk menghapus nilai input saat Delete/Backspace ditekan
-            $(document).on('keydown', function(e) {
-                if ((e.key === 'Delete' || e.key === 'Backspace') && selectedCells.size > 0) {
-                    selectedCells.forEach(cell => {
-                        const input = cell.find('.form-input');
-                        if (input) {
-                            input.val(''); // Hapus nilai input
-                        }
-                    });
-                }
-            });
-
-            // Event listener untuk paste data dari Excel
-            table.on('paste', function(e) {
-                e.preventDefault(); // Mencegah paste default
-
-                // Ambil data yang di-paste
-                const pasteData = e.originalEvent.clipboardData.getData('text/plain');
-
-                // Proses data yang di-paste
-                const rows = pasteData.split('\n'); // Pisahkan baris
-                const inputs = $('.form-input'); // Ambil semua input
-
-                let inputIndex = 0;
-                rows.forEach(row => {
-                    const columns = row.split('\t'); // Pisahkan kolom (tab-separated)
-
-                    columns.forEach(column => {
-                        if (inputIndex < inputs.length) {
-                            const input = $(inputs[inputIndex]);
-                            input.val(column.trim()); // Isi nilai ke input
-                            inputIndex++;
+                const rows = clipboardData.trim().split('\n');
+                rows.forEach((rowData, i) => {
+                    const cols = rowData.split('\t');
+                    cols.forEach((value, j) => {
+                        const selector =
+                            `[data-row="${startRow + i}"][data-col="${startCol + j}"]`;
+                        const targetInput = $(selector);
+                        if (targetInput.length) {
+                            targetInput.val(value.trim());
                         }
                     });
                 });
+
+                e.preventDefault();
             });
 
-            // Event listener untuk menghapus seleksi saat klik di luar tabel
-            $(document).on('click', function(e) {
-                if (!table.is(e.target) && table.has(e.target).length === 0) {
-                    selectedCells.forEach(cell => {
-                        cell.removeClass('selected');
-                    });
-                    selectedCells.clear();
+            // Klik satu cell: seleksi hanya cell itu
+            $('#nilai-table td').on('click', function(e) {
+                // // Abaikan kalau yang diklik adalah input (biar bisa ngetik)
+                // if ($(e.target).is('input')) return;
+
+                clearSelection();
+                $(this).addClass('selected');
+                selectedCells = [$(this).find('input')];
+            });
+
+            // Klik di luar tabel: hapus semua seleksi
+            $(document).on('mousedown', function(e) {
+                // Kalau kliknya bukan di dalam tabel
+                if (!$(e.target).closest('#nilai-table').length) {
+                    clearSelection();
                 }
             });
 
-            // Event listener untuk tombol Hapus Semua
-            $('#hapusSemua').on('click', function() {
-                $('.cell').val(''); // Hapus semua nilai input
-            });
         });
     </script>
-@endpush
+@endsection

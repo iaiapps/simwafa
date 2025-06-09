@@ -14,8 +14,9 @@
             <div>
                 <p class="fs-5 text-center">Data Jurnal <span>{{ $journals->first()->teacher->name }}</span> </p>
             </div>
+            <small class="text-primary d-block mb-3"><em>silahkan scroll kanan-kiri jika tampilan terpotong</em></small>
             <div class="table-responsive">
-                <table id="table" class="table">
+                <table id="table" class="table table-bordered">
                     <thead>
                         <tr>
                             <th>No</th>

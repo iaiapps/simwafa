@@ -5,13 +5,13 @@
 @section('content')
 
 
-    <a href="{{ route('coba.nilai') }}" class="btn btn-primary mb-3">coba nilai</a>
+    {{-- <a href="{{ route('coba.nilai') }}" class="btn btn-primary mb-3">coba nilai</a> --}}
 
 
     @if ($students->isEmpty())
         <div class="card p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>
-            <p>Hubungi Admin</p>
+            <p>Silahkan memilih siswa untuk ditambah ke kelompok anda</p>
         </div>
     @else
         <div class="card p-3 mb-3">
@@ -39,7 +39,8 @@
             @endphp
             <div class="card p-3">
                 <p class="text-center fs-5 mb-0 rounded">Data nilai siswa : {{ $teacher->cluster->name_cluster }}</p>
-                <p class="mb-0">Tahun Pelajaran: {{ $year->year . ' - ' . $year->description }}</p>
+                <p class="text-center mb-3">Tahun Pelajaran: {{ $year->year . ' - ' . $year->description }}</p>
+                <small class="text-primary"><em>silahkan scroll kanan-kiri jika tampilan terpotong</em></small>
                 <hr>
                 <div class="table-responsive">
                     <table id="" class="table table-bordered">

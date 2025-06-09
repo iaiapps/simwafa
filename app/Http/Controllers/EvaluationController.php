@@ -220,8 +220,10 @@ class EvaluationController extends Controller
     {
         list($teacher, $cluster_id) = $this->teacherId();
         $students = Student::where('cluster_id', $cluster_id)->get();
-        return view('admin.evaluation.cobanilai', compact('students'));
+        $nilai = ['Nilai 1', 'Nilai 2', 'Nilai 3'];
+        return view('admin.evaluation.cobanilai', compact('students', 'nilai'));
     }
+
     public function saveGrades(Request $request)
     {
         // Validasi input

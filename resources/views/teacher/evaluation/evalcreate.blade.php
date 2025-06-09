@@ -34,12 +34,15 @@
     @if ($students == null)
         <div class="card p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>
-            <p>Hubungi Admin</p>
+            <p>Silahkan memilih siswa untuk ditambah ke kelompok anda</p>
         </div>
     @else
         <div class="card">
             @if ($komponen_id !== null)
-                <div class="card-body mt-3">
+                <div class="card-body">
+                    <small class="mb-3 d-block text-danger"> <em>Jangan lupa pilih tahun pelajaran yang
+                            sesuai!</em></small>
+
                     <form method="POST" action="{{ route('student.evaluation.store') }}">
                         @csrf
                         <p class="text-center h5 mb-3">Penilian :

@@ -147,7 +147,7 @@ class TeacherController extends Controller
     {
         $user_id = Auth::user()->id;
         $teacher = Teacher::where('user_id', $user_id)->first();
-        $students = Student::where('cluster_id', null)->orWhere('stage_id', null)->get();
+        $students = Student::all();
         $stages = Stage::all();
         return view('teacher.assignCluster.assignCluster', compact('students', 'stages', 'teacher'));
     }

@@ -96,7 +96,7 @@ Route::middleware('auth')->group(function () {
 
         // coba
         Route::get('coba-nilai', [EvaluationController::class, 'cobaNilai'])->name('coba.nilai');
-        Route::post('simpan-nilai', [EvaluationController::class, 'saveGrades'])->name('nilai.simpan');
+        Route::post('simpan-nilai', [EvaluationController::class, 'saveGrades'])->name('simpan.nilai');
 
         // utk walas lihat siswa
         Route::get('student-grade', [TeacherController::class, 'studentGrade'])->name('student.grade');
