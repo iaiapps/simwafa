@@ -13,7 +13,7 @@
             <form action="{{ route('student.grade') }}" method="get">
                 <div class="row">
                     <div class="input-group">
-                        <select name="year_id" id="year" class="form-select">
+                        <select name="year_id" id="year" class="form-select" aria-label="Pilih tahun ajaran">
                             <option selected disabled>-- pilih tahun ajaran --</option>
                             @foreach ($years as $year)
                                 <option value="{{ $year->id }}">{{ $year->year . ' - ' . $year->description }}</option>
@@ -32,7 +32,7 @@
             @php
                 $year_name = $years->where('id', $year_id)->first();
             @endphp
-            <div class="card rounded p-3">
+            <div class="card p-3">
                 <p class="text-center fs-5 mb-1 rounded">Siswa : {{ $teacher->grade->name_grade }}</p>
                 <p class="text-center m-0">Data khusus Wali Kelas</p>
                 <hr class="mb-4">
@@ -72,7 +72,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('student.evaluation.show', $student->id) }}"
-                                            class="btn btn-warning btn-sm">detail</a>
+                                            class="btn btn-outline-secondary btn-sm">Detail</a>
                                     </td>
                                 </tr>
                             @empty

@@ -1,7 +1,177 @@
-// Body
-$body-bg: #f8fafc;
+// ==========================================================================
+// SimWafa — variabel kompilasi Bootstrap (Sorbet Lantern Bento)
+// Diimpor SEBELUM 'bootstrap/scss/bootstrap'. Nilai harus sinkron dengan
+// _tokens.scss (runtime --sw-*/--bs-*). Sumber kebenaran: docs/prototype.
+// ==========================================================================
 
-// Typography
-$font-family-sans-serif: 'Nunito', sans-serif;
-$font-size-base: 0.9rem;
-$line-height-base: 1.6;
+// --------------------------------------------------------------------------
+// Font (dimuat via <link> fonts.bunny.net di layout)
+// --------------------------------------------------------------------------
+$font-family-sans-serif: 'Inter', system-ui, -apple-system, 'Segoe UI', Roboto,
+    'Helvetica Neue', Arial, sans-serif;
+$font-family-monospace: 'Geist Mono', ui-monospace, SFMono-Regular, Menlo,
+    Monaco, Consolas, 'Courier New', monospace;
+$headings-font-family: 'Nunito', system-ui, sans-serif;
+$headings-font-weight: 700;
+$headings-color: #23211e;
+
+$font-size-base: 1rem;
+$line-height-base: 1.65;
+
+// --------------------------------------------------------------------------
+// Warnadasar
+// --------------------------------------------------------------------------
+$body-color: #4a443b;
+$body-bg: #fdf8f0;
+
+$primary: #d9822b;
+$secondary: #5f7f52;
+$success: #647f2a;
+$info: #2e5aac;
+// Adaptasi bernama: token Sorbet memakai warning === primary (#d9822b).
+// Agar btn-warning terbedakan, warning dipetakan ke amber-cokelat dunia sama.
+$warning: #8a5a1a;
+$danger: #c2483c;
+$light: #fffbf3;
+$dark: #23211e;
+
+$emphasized-color: #23211e;
+$secondary-color: #756a5d;
+$tertiary-bg: #f6ecd9;
+$secondary-bg: #f6ecd9;
+
+$border-color: rgba(35, 33, 30, 0.1); // hairline
+
+$code-color: #8a5a1a;
+
+// --------------------------------------------------------------------------
+// Link — Bootstrap 5.3 memakai var(--bs-link-color-rgb); cukup set di sini,
+// proses kompilasi akan menghasilkan rgb var yang benar.
+// --------------------------------------------------------------------------
+$link-color: #8a5a1a;
+$link-hover-color: #754c15;
+
+// --------------------------------------------------------------------------
+// Radius (prototipe: 8 / 12 / 16 / 20 / 24)
+// --------------------------------------------------------------------------
+$border-radius: 12px;
+$border-radius-sm: 8px;
+$border-radius-lg: 16px;
+$border-radius-xl: 20px;
+$border-radius-2xl: 24px;
+$border-radius-pill: 9999px;
+
+// --------------------------------------------------------------------------
+// Elevation (hanya 2 level rest/hover + 1 untuk modal)
+// --------------------------------------------------------------------------
+$box-shadow-sm: 0 2px 8px rgba(90, 70, 40, 0.08);
+$box-shadow: 0 8px 24px rgba(90, 70, 40, 0.12);
+$box-shadow-lg: 0 16px 40px rgba(90, 70, 40, 0.16);
+
+// --------------------------------------------------------------------------
+// Focus ring
+// --------------------------------------------------------------------------
+$focus-ring-width: 3px;
+$focus-ring-opacity: 0.45;
+$focus-ring-color: rgba(217, 130, 43, 0.5);
+$focus-ring-border-width: 2px;
+
+// --------------------------------------------------------------------------
+// Komponen
+// --------------------------------------------------------------------------
+$btn-font-weight: 600;
+$btn-border-radius: 16px;
+$btn-padding-y: 0.55rem;
+$btn-padding-x: 1.15rem;
+$btn-padding-y-sm: 0.3rem;
+$btn-padding-x-sm: 0.85rem;
+$btn-font-size-sm: 0.8rem;
+$btn-border-width: 1px;
+$btn-hover-border-width: 1px;
+$btn-focus-box-shadow: 0 0 0 3px rgba(217, 130, 43, 0.5);
+
+$input-btn-padding-y: 0.55rem;
+$input-btn-padding-x: 1rem;
+$input-btn-font-size: 1rem;
+$input-btn-line-height: 1.5;
+$input-btn-border-width: 1px;
+$input-btn-border-radius: 12px;
+
+$input-bg: #ffffff;
+$input-color: #23211e;
+$input-border-color: #8a7d6e;
+$input-border-radius: 12px;
+$input-border-radius-sm: 8px;
+$input-border-radius-lg: 12px;
+$input-focus-border-color: #d9822b;
+$input-placeholder-color: #756a5d;
+$input-group-addon-bg: #f6ecd9;
+
+$card-border-radius: 20px;
+$card-border-color: rgba(35, 33, 30, 0.1);
+$card-cap-bg: #f6ecd9;
+$card-bg: #ffffff;
+
+$dropdown-border-radius: 16px;
+$dropdown-border-color: rgba(35, 33, 30, 0.1);
+$dropdown-link-color: #4a443b;
+$dropdown-link-hover-color: #23211e;
+$dropdown-link-hover-bg: #f6ecd9;
+$dropdown-link-active-color: #23211e;
+$dropdown-link-active-bg: rgba(217, 130, 43, 0.2);
+$dropdown-link-danger-color: #a03a30;
+$dropdown-link-danger-hover-color: #ffffff;
+$dropdown-link-danger-hover-bg: #c2483c;
+
+$modal-border-radius: 20px;
+$modal-border-color: rgba(35, 33, 30, 0.1);
+$modal-content-bg: #ffffff;
+$modal-content-border-color: rgba(35, 33, 30, 0.1);
+$modal-content-box-shadow-xs: 0 2px 8px rgba(90, 70, 40, 0.08);
+$modal-content-box-shadow-sm-up: 0 16px 40px rgba(90, 70, 40, 0.16);
+$modal-header-border-color: rgba(35, 33, 30, 0.1);
+$modal-footer-border-color: rgba(35, 33, 30, 0.1);
+
+$table-color: #4a443b;
+$table-border-color: rgba(35, 33, 30, 0.1);
+$table-striped-color: rgba(35, 33, 30, 0.03);
+$table-hover-color: #4a443b;
+$table-hover-bg: rgba(217, 130, 43, 0.04);
+$table-head-bg: #f6ecd9;
+$table-head-color: #23211e;
+
+$breadcrumb-item-padding-x: 0.5rem;
+$breadcrumb-divider-color: #756a5d;
+$breadcrumb-active-color: #23211e;
+$breadcrumb-bg: transparent;
+$breadcrumb-border-radius: 0;
+$breadcrumb-margin-bottom: 0;
+
+$badge-font-size: 0.72rem;
+$badge-font-weight: 500;
+$badge-border-radius: 9999px;
+$badge-padding-y: 0.32em;
+$badge-padding-x: 0.65em;
+
+$alert-border-radius: 16px;
+$alert-border-width: 1px;
+
+$list-group-border-radius: 16px;
+$list-group-border-color: rgba(35, 33, 30, 0.1);
+$list-group-bg: #ffffff;
+$list-group-action-hover-bg: #f6ecd9;
+
+$pagination-border-radius: 12px;
+$pagination-color: #8a5a1a;
+$pagination-hover-color: #754c15;
+$pagination-hover-bg: #f6ecd9;
+$pagination-active-color: #23211e;
+$pagination-active-bg: #d9822b;
+$pagination-active-border-color: #d9822b;
+
+$transition-base: all 150ms ease;
+$transition-fade: opacity 150ms ease;
+$transition-collapse: height 200ms ease;
+
+// Matikan utility API varian "emphasis" yang tidak dipakai (hemat output)
+$enable-negative-margins: false;

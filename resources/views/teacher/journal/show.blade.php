@@ -38,7 +38,7 @@
                                 <td>{{ $journal->pages }}</td>
                                 <td>{{ $journal->description }}</td>
                                 <td><a href="{{ route('journal.edit', $journal->id) }}"
-                                        class="btn btn-warning btn-sm">edit</a></td>
+                                        class="btn btn-outline-secondary btn-sm">Edit</a></td>
                             </tr>
                         @endforeach
 

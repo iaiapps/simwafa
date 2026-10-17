@@ -35,22 +35,6 @@
         </form>
     </div>
 
-    <style>
-        .w-name {
-            width: 100% !important;
-        }
-
-        input:focus {
-            background-color: #f2fcfd;
-        }
-
-        td.selected {
-            background-color: #b2ebf2;
-            outline: 1px solid #0097a7;
-            border-radius: 4px;
-        }
-    </style>
-
     <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
 
     <script>

@@ -1,15 +1,17 @@
-<div class="d-flex justify-content-between flex-wrap flex-md-nowrap align-items-center pt-3 pb-2 mb-3 border-bottom">
-    <p class="h3 mt-2 mb-0">@yield('title')</p>
-    {{-- <div class="btn-toolbar mb-2 mb-md-0">
-        <div class="btn-group me-2">
-            <button type="button" class="btn btn-sm btn-outline-secondary">Share</button>
-            <button type="button" class="btn btn-sm btn-outline-secondary">Export</button>
-        </div>
-        <button type="button" class="btn btn-sm btn-outline-secondary dropdown-toggle d-flex align-items-center gap-1">
-            <svg class="bi">
-                <use xlink:href="#calendar3" />
-            </svg>
-            This week
-        </button>
-    </div> --}}
+<div class="page-head">
+    <div>
+        <nav aria-label="Breadcrumb">
+            <ol class="breadcrumb breadcrumb-sw">
+                <li class="breadcrumb-item"><a href="{{ route('home') }}">Beranda</a></li>
+                <li class="breadcrumb-item active" aria-current="page">@yield('title')</li>
+            </ol>
+        </nav>
+        <h1 class="page-title">@yield('title')</h1>
+        @hasSection('subtitle')
+            <p class="page-sub">@yield('subtitle')</p>
+        @endif
+    </div>
+    @hasSection('actions')
+        <div class="page-actions">@yield('actions')</div>
+    @endif
 </div>

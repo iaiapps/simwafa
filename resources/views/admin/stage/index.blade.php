@@ -9,7 +9,7 @@
         <i class="bi bi-plus-circle"></i> Tambah jilid
     </button>
 
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <div class="table-responsive">
             <table id="table" class="table">
                 <thead>
@@ -25,13 +25,13 @@
                             <td>{{ $stage->id }}</td>
                             <td>{{ $stage->name_stage }}</td>
                             <td>
-                                <a href="{{ route('stage.edit', $stage->id) }}" class="btn btn-warning btn-sm">edit</a>
+                                <a href="{{ route('stage.edit', $stage->id) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
 
                                 <form method="POST" action="{{ route('stage.destroy', $stage->id) }}" class="d-inline"
                                     onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>

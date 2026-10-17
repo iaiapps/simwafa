@@ -13,7 +13,7 @@
                     <input id="name" type="text" class="form-control @error('name') is-invalid @enderror"
                         name="name" value="{{ old('name', $komponen->name) }}" required autocomplete="name" autofocus>
                 </div>
-                <button type="submit" class="btn btn-success"> simpan data </button>
+                <button type="submit" class="btn btn-primary"> simpan data </button>
             </form>
         </div>
     </div>

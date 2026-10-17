@@ -20,7 +20,7 @@
                         <option>Genap</option>
                     </select>
                 </div>
-                <button type="submit" class="btn btn-success"> simpan data </button>
+                <button type="submit" class="btn btn-primary"> simpan data </button>
             </form>
         </div>
     </div>

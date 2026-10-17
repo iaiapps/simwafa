@@ -35,9 +35,9 @@
                     </div>
                 </div> --}}
                 <div class="row mb-3">
-                    <label for="name" class="col-md-2 col-form-label">Kelas (Id)</label>
+                    <label for="grade_id" class="col-md-2 col-form-label">Kelas (Id)</label>
                     <div class="col-md-10">
-                        <select class="form-select" id="role" name="grade_id">
+                        <select class="form-select" id="grade_id" name="grade_id">
                             <option disabled selected>---pilih kelas---</option>
                             @foreach ($grades as $grade)
                                 <option value="{{ $grade->id }}">{{ $grade->name_grade }}</option>
@@ -46,9 +46,9 @@
                     </div>
                 </div>
                 <div class="row mb-3">
-                    <label for="name" class="col-md-2 col-form-label">Kelompok (Id)</label>
+                    <label for="cluster_id" class="col-md-2 col-form-label">Kelompok (Id)</label>
                     <div class="col-md-10">
-                        <select class="form-select" id="role" name="cluster_id">
+                        <select class="form-select" id="cluster_id" name="cluster_id">
                             <option disabled selected>---pilih kelompok---</option>
                             @foreach ($clusters as $cluster)
                                 <option value="{{ $cluster->id }}">{{ $cluster->name_cluster }}</option>
@@ -58,7 +58,7 @@
                 </div>
                 <div class="row mb-0">
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             simpan data guru
                         </button>
                     </div>

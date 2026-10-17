@@ -9,7 +9,7 @@
             <form method="get" action="{{ route('evaluation.create') }}">
                 <div class="mb-3">
                     <label for="grade_id" class="form-label">Pilih Kelas</label>
-                    <select name="grade_id" id="siswa" class="form-select">
+                    <select name="grade_id" id="grade_id" class="form-select">
                         <option selected disabled>-- pilih kelas --</option>
                         @foreach ($grades as $grade)
                             <option value="{{ $grade->id }}">{{ $grade->name_grade }}</option>
@@ -18,7 +18,7 @@
                 </div>
                 <div class="mb-3">
                     <label for="komponen_id" class="form-label">Pilih Komponen Penilaian</label>
-                    <select name="komponen_id" id="siswa" class="form-select">
+                    <select name="komponen_id" id="komponen_id" class="form-select">
                         <option selected disabled>-- pilih komponen --</option>
                         @foreach ($komponens as $komponen)
                             <option value="{{ $komponen->id }}">{{ $komponen->name_komp }}</option>
@@ -26,7 +26,7 @@
                     </select>
                 </div>
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-primary">
                         Filter
                     </button>
                 </div>
@@ -55,7 +55,7 @@
                                     <td>{{ $loop->iteration }}</td>
                                     <input name="komponen_id" value="{{ $komponen_id->id }}" hidden>
                                     <input name="student_id[{{ $student->id }}]" value="{{ $student->id }}" hidden>
-                                    <td style="width: 25%"> <input id="name_student" type="text"
+                                    <td class="td-student-name"> <input id="name_student" type="text"
                                             class="form-control bg-secondary-subtle" name="name_student"
                                             value="{{ $student->name }}" readonly disabled> </td>
                                     <td>{{ $student->grade->name_grade }}</td>
@@ -74,7 +74,7 @@
                 </div>
 
                 <div class="mb-3">
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-primary">
                         Tambah Nilai
                     </button>
                 </div>
@@ -87,10 +87,10 @@
 @push('scripts')
     <script>
         $(document).ready(function() {
-            $('#siswa').select2({
+            $('#grade_id').select2({
                 theme: 'bootstrap-5'
             });
-            $('#komponen').select2({
+            $('#komponen_id').select2({
                 theme: 'bootstrap-5'
             });
         });

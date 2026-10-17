@@ -13,11 +13,10 @@
     <!-- Favicon -->
     <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/grades.png') }}">
 
-    <!-- Fonts -->
-    {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
-
-    <!-- Custom css -->
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- Fonts (Nunito display, Inter body, Geist Mono angka) -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|nunito:700,800|geist-mono:400,500"
+        rel="stylesheet">
 
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
@@ -26,19 +25,18 @@
 
 <body>
     <div id="app">
-        <!-- header -->
-        @include('layouts.partials.header')
-
         <!-- sidemenu -->
         @include('layouts.partials.sidemenu')
 
-        <!-- content -->
-        <main id="page" class="page-margin px-3 pb-5">
-            @include('layouts.partials.title')
-            @yield('content')
+        <!-- header -->
+        @include('layouts.partials.header')
 
-            <!-- footer -->
-            {{-- @include('layouts.partials.footer') --}}
+        <!-- content -->
+        <main class="app-main">
+            <div class="page">
+                @include('layouts.partials.title')
+                @yield('content')
+            </div>
         </main>
 
     </div>
@@ -46,7 +44,6 @@
 
 <!-- script -->
 <script src="{{ asset('assets/jquery/jquery-3.6.4.min.js') }}"></script>
-<script src="{{ asset('js/sidebar.js') }}"></script>
 @stack('scripts')
 
 </html>

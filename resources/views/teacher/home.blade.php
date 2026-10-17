@@ -24,29 +24,23 @@
                 </p>
             </div>
             <div class="col-md-3 col-12">
-                <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">ganti akses ke
+                <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">Ganti akses ke
                     Wali Kelas</a>
             </div>
         </div>
-        <div class="row mb-3 gx-2">
-            <div class="col-12 col-md-4">
-                <a href="{{ route('student.cluster') }}" class="p-2 bg-primary nav-link btn btn-outline text-white">
-                    <i class="bi bi-people fs-3"></i>
-                    <span class="d-block">Data kelompok</span>
-                </a>
-            </div>
-            <div class="col-12 col-md-4">
-                <a href="{{ route('eval.index') }}" class="p-2 bg-warning nav-link btn btn-outline text-dark">
-                    <i class="bi bi-journal-check fs-3"></i>
-                    <span class="d-block">Nilai Siswa</span>
-                </a>
-            </div>
-            <div class="col-12 col-md-4">
-                <a href="{{ route('student.evaluation') }}" class="p-2 bg-danger nav-link btn btn-outline text-white">
-                    <i class="bi bi-list-check fs-3"></i>
-                    <span class="d-block">Penilaian</span>
-                </a>
-            </div>
+        <div class="action-row mb-3">
+            <a class="action-tile" href="{{ route('student.cluster') }}">
+                <i class="bi bi-people"></i>
+                <span class="fw-semibold">Data Kelompok</span>
+            </a>
+            <a class="action-tile" href="{{ route('eval.index') }}">
+                <i class="bi bi-journal-check"></i>
+                <span class="fw-semibold">Nilai Siswa</span>
+            </a>
+            <a class="action-tile" href="{{ route('student.evaluation') }}">
+                <i class="bi bi-list-check"></i>
+                <span class="fw-semibold">Penilaian</span>
+            </a>
         </div>
     @elseif ($akses == 'Wali Kelas')
         <div class="row mb-3 align-items-center gy-3">
@@ -56,28 +50,26 @@
                 </p>
             </div>
             <div class="col-md-3 col-12">
-                <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">ganti akses ke
+                <a href="{{ route('akses.walas') }}" class="btn btn-primary w-100">Ganti akses ke
                     Guru</a>
             </div>
         </div>
-        <div class="row mb-3">
-            <div class="col-12 ">
-                <a href="{{ route('student.grade') }}" class="p-2 bg-success nav-link btn btn-outline text-white">
-                    <i class="bi bi-journal-check fs-3"></i>
-                    <span class="d-block">Nilai Siswa</span>
-                </a>
-            </div>
+        <div class="action-row mb-3">
+            <a class="action-tile" href="{{ route('student.grade') }}">
+                <i class="bi bi-journal-check"></i>
+                <span class="fw-semibold">Nilai Siswa</span>
+            </a>
         </div>
     @endif
 
 
 
-    <div class="card rounded p-3 mb-3">
+    <div class="card p-3 mb-3">
         <p class="fs-4 text-center m-0">
             Selamat Datang di Sistem Penilaian Wafa SDIT Harapan Umat Jember
         </p>
     </div>
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <ul class="list-group shadow-0">
             <li class="list-group-item">Penilian BTAQ atau Wafa dalam 1 semester mencakup Penilaian Harian, Sumatif Tengah
                 Semester (STS)

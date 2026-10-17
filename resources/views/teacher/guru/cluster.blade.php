@@ -8,12 +8,12 @@
     @if ($students->isEmpty())
         <div class="bg-white rounded p-3 text-center">
             <p class="fs-5">Anda belum belum memiliki anggota kelompok</p>
-            <a href="{{ route('tassign.cluster') }}" class="btn btn-primary">pilih kelompok</a>
+            <a href="{{ route('tassign.cluster') }}" class="btn btn-outline-secondary">Pilih Kelompok</a>
         </div>
     @else
-        <div class="card rounded p-3">
+        <div class="card p-3">
             <div>
-                <a href="{{ route('tassign.cluster') }}" class="btn btn-primary mb-3">Tambah siswa ke kelompok</a>
+                <a href="{{ route('tassign.cluster') }}" class="btn btn-primary mb-3">Tambah Siswa ke Kelompok</a>
             </div>
 
             <p class="text-center mb-0 ">Data kelompok <span class="fs-5"><u>
@@ -48,7 +48,7 @@
                                         onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');">
                                         @csrf
                                         @method('DELETE')
-                                        <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
                                     </form>
                                 </td>
                             </tr>

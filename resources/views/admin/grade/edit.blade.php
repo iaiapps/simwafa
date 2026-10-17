@@ -26,7 +26,7 @@
 
                 <div class="row mb-0">
                     <div class="col-md-12 text-center">
-                        <button type="submit" class="btn btn-success">
+                        <button type="submit" class="btn btn-primary">
                             Simpan Data Kelas
                         </button>
                     </div>

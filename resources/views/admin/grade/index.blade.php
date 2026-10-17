@@ -6,7 +6,7 @@
 
     <a href="{{ route('grade.create') }}" class="btn btn-primary mb-3"> <i class="bi bi-plus-circle"></i> Tambah kelas</a>
 
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <div class="table-responsive">
 
             <table id="table" class="table">
@@ -23,13 +23,13 @@
                             <td>{{ $grade->id }}</td>
                             <td>{{ $grade->name_grade }}</td>
                             <td>
-                                <a href="{{ route('grade.edit', $grade->id) }}" class="btn btn-warning btn-sm">edit</a>
+                                <a href="{{ route('grade.edit', $grade->id) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
 
                                 <form method="POST" action="{{ route('grade.destroy', $grade->id) }}" class="d-inline"
                                     onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>
@@ -54,6 +54,7 @@
                 "fixedColumns": true,
                 'keys': true,
             });
+            $('#table input[type="text"][tabindex="0"]').attr('aria-label', 'Sel tabel');
         });
     </script>
 @endpush

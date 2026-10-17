@@ -12,7 +12,7 @@
         <form action="{{ route('evaluation.index') }}" method="get">
             <div class="row">
                 <div class="input-group mb-3">
-                    <select name="year_id" id="year" class="form-select">
+                    <select name="year_id" id="year" class="form-select" aria-label="Pilih tahun ajaran">
                         <option selected disabled>-- pilih tahun ajaran --</option>
                         @foreach ($years as $year)
                             <option value="{{ $year->id }}">{{ $year->year . ' - ' . $year->description }}</option>
@@ -20,7 +20,7 @@
                     </select>
                 </div>
                 <div class="input-group mb-3">
-                    <select name="grade_id" id="grade" class="form-select">
+                    <select name="grade_id" id="grade" class="form-select" aria-label="Pilih kelas">
                         <option selected disabled>-- pilih kelas --</option>
                         <option value="all">Semua kelas</option>
                         @foreach ($grades as $grade)
@@ -85,8 +85,8 @@
                                         method="post" class="d-inline">
                                         @csrf
                                         @method('delete')
-                                        <button type="submit" class="btn btn-danger btn-sm">
-                                            <i class="bi bi-trash3"></i> del
+                                        <button type="submit" class="btn btn-outline-danger btn-sm">
+                                            <i class="bi bi-trash3"></i> Hapus
                                         </button>
                                     </form>
                                 </td>

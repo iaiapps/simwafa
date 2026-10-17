@@ -9,7 +9,7 @@
     <button type="button" class="btn btn-primary mb-3" data-bs-toggle="modal" data-bs-target="#createCluster">
         Tambah kelompok
     </button>
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <div class="table-responsive">
 
             <table id="table" class="table">
@@ -26,13 +26,13 @@
                             <td>{{ $cluster->id }}</td>
                             <td>{{ $cluster->name_cluster }}</td>
                             <td>
-                                <a href="{{ route('cluster.edit', $cluster->id) }}" class="btn btn-warning btn-sm">edit</a>
+                                <a href="{{ route('cluster.edit', $cluster->id) }}" class="btn btn-outline-secondary btn-sm">Edit</a>
 
                                 <form method="POST" action="{{ route('cluster.destroy', $cluster->id) }}" class="d-inline"
                                     onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>

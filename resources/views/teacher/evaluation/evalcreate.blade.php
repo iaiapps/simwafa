@@ -17,13 +17,13 @@
             <form method="get" action="{{ route('student.evaluation') }}">
                 <label for="komponen_id" class="form-label">Komponen Penilaian</label>
                 <div class="input-group mb-3">
-                    <select name="komponen_id" class="form-select">
+                    <select name="komponen_id" id="komponen_id" class="form-select">
                         <option selected disabled>-- pilih komponen --</option>
                         @foreach ($komponens as $komponen)
                             <option value="{{ $komponen->id }}">{{ $komponen->name_komp }}</option>
                         @endforeach
                     </select>
-                    <button type="submit" class="btn btn-success">
+                    <button type="submit" class="btn btn-primary">
                         Pilih
                     </button>
                 </div>
@@ -104,7 +104,7 @@
 
 
                         <div class="mb-3">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-primary">
                                 Simpan Nilai
                             </button>
                         </div>
@@ -119,19 +119,6 @@
     @endif
 @endsection
 
-@push('css')
-    <style>
-        .lebar {
-            width: 150px
-        }
-
-        @media(max-width:800px) {
-            .lebar {
-                width: 85px
-            }
-        }
-    </style>
-@endpush
 @include('layouts.partials.scripts')
 @push('scripts')
     <script>

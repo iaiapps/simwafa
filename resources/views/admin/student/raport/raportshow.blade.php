@@ -3,7 +3,7 @@
 @section('title', 'Detail Nilai')
 
 @section('content')
-    <button class="btn btn-success btn-sm mb-3" onclick="print()"> print raport </button>
+    <button class="btn btn-primary btn-sm mb-3" onclick="print()"> print raport </button>
 
     <div class="card p-3" id="printarea">
         @if ($evaluations->isEmpty())
@@ -102,7 +102,7 @@
                 <div>
                     <div class="row text-center">
                         <div class="col">
-                            <p class="mb-1 text-white">btaq</p>
+                            <p class="mb-1">btaq</p>
                             <p>Waka Keagamaan</p>
                             <br> <br>
                             <p>(Ahmad Fauzan Awaris)</p>

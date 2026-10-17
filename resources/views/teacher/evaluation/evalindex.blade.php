@@ -18,7 +18,7 @@
             <form action="{{ route('eval.index') }}" method="get">
                 <div class="row">
                     <div class="input-group">
-                        <select name="year_id" id="year" class="form-select">
+                        <select name="year_id" id="year" class="form-select" aria-label="Pilih tahun ajaran">
                             <option selected disabled>-- pilih tahun ajaran --</option>
                             @foreach ($years as $year)
                                 <option value="{{ $year->id }}">{{ $year->year . ' - ' . $year->description }}</option>
@@ -72,7 +72,7 @@
                                     </td>
                                     <td>
                                         <a href="{{ route('student.evaluation.show', $student->id) }}"
-                                            class="btn btn-warning btn-sm">detail</a>
+                                            class="btn btn-outline-secondary btn-sm">Detail</a>
                                     </td>
                                 </tr>
                             @empty

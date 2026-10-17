@@ -3,7 +3,7 @@
 @section('title', 'Tentukan Kelas')
 
 @section('content')
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <form action="{{ route('assign.grade') }}" method="POST">
             @csrf
             @method('PUT')
@@ -38,7 +38,7 @@
                                 <td>{{ $student->id }}</td>
                                 <td>
                                     <input class="form-check-input" type="checkbox"
-                                        name="input[{{ $student->id }}][check]">
+                                        name="input[{{ $student->id }}][check]" aria-label="Pilih {{ $student->name ?? 'siswa' }}">
                                 </td>
                                 <td class="w-75">{{ $student->name ?? 'belum ditentukan' }}</td>
                             </tr>

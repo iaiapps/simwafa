@@ -3,7 +3,7 @@
 @section('title', 'Tentukan Kelompok')
 
 @section('content')
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <div class="text-center">
             <p class="fs-4 mb-2"> Kelompok {{ $teacher->cluster->name_cluster }}</p>
         </div>
@@ -65,7 +65,7 @@
                                 {{-- <td>{{ $student->id }}</td> --}}
                                 <td>
                                     <input class="form-check-input my-check" type="checkbox"
-                                        name="input[{{ $student->id }}][check]">
+                                        name="input[{{ $student->id }}][check]" aria-label="Pilih {{ $student->name ?? 'siswa' }}">
                                 </td>
                                 <td class="w-50 text-capitalize">
                                     {{ $student->name ?? 'belum ditentukan' }} <br> <span
@@ -90,17 +90,6 @@
 
 @endsection
 @include('layouts.partials.scripts')
-@push('css')
-    <style>
-        .my-check {
-            display: inline-block;
-            width: 27px;
-            height: 26px;
-            cursor: pointer;
-            border: 3px solid rgb(0, 102, 255);
-        }
-    </style>
-@endpush
 @push('scripts')
     <script>
         $(document).ready(function() {

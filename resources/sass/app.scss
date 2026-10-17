@@ -1,11 +1,15 @@
-// Fonts
-// @import url('https://fonts.bunny.net/css?family=Nunito');
+// ==========================================================================
+// SimWafa — entry stylesheet
+// Urutan penting:
+//   1. _variables   → variabel kompilasi, SEBELUM bootstrap
+//   2. bootstrap    → kompilasi mengikuti variabel di atas
+//   3. _tokens      → :root runtime (--sw-* + override --bs-*)
+//   4. _components  → lapisan komponen (port dari prototipe)
+//   5. bootstrap-icons → font via paket npm (bukan CDN)
+// ==========================================================================
 
-// Variables
-// @import 'variables';
-
-// Bootstrap
+@import 'variables';
 @import 'bootstrap/scss/bootstrap';
-
-// Bootstrap icon
+@import 'tokens';
+@import 'components';
 @import 'bootstrap-icons/font/bootstrap-icons.css';

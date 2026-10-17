@@ -39,7 +39,8 @@
                                         @if ($bagian == 'grade')
                                             <td>
                                                 @if ($teacher->grade_id == null)
-                                                    <select class="form-select" name="grade_id[{{ $teacher->id }}]">
+                                                    <select class="form-select" name="grade_id[{{ $teacher->id }}]"
+                                                        aria-label="Kelas untuk {{ $teacher->name }}">
                                                         <option disabled selected>---pilih kelas---</option>
                                                         @foreach ($grades as $grade)
                                                             <option value="{{ $grade->id }}">{{ $grade->name_grade }}
@@ -47,7 +48,8 @@
                                                         @endforeach
                                                     </select>
                                                 @else
-                                                    <select class="form-select" name="grade_id[{{ $teacher->id }}]">
+                                                    <select class="form-select" name="grade_id[{{ $teacher->id }}]"
+                                                        aria-label="Kelas untuk {{ $teacher->name }}">
                                                         <option value="{{ $teacher->grade->id }}" selected>
                                                             {{ $teacher->grade->name_grade }}</option>
                                                     </select>
@@ -56,7 +58,8 @@
                                         @elseif ($bagian == 'cluster')
                                             <td>
                                                 @if ($teacher->cluster_id == null)
-                                                    <select class="form-select" name="cluster_id[{{ $teacher->id }}]">
+                                                    <select class="form-select" name="cluster_id[{{ $teacher->id }}]"
+                                                        aria-label="Kelompok untuk {{ $teacher->name }}">
                                                         <option disabled selected>---pilih kelompok---</option>
                                                         @foreach ($clusters as $cluster)
                                                             <option value="{{ $cluster->id }}">
@@ -65,7 +68,8 @@
                                                         @endforeach
                                                     </select>
                                                 @else
-                                                    <select class="form-select" name="cluster_id[{{ $teacher->id }}]">
+                                                    <select class="form-select" name="cluster_id[{{ $teacher->id }}]"
+                                                        aria-label="Kelompok untuk {{ $teacher->name }}">
                                                         <option value="{{ $teacher->cluster->id }}" selected>
                                                             {{ $teacher->cluster->name_cluster }}</option>
                                                     </select>
@@ -80,7 +84,7 @@
                     </div>
                     <div class="row mb-0">
                         <div class="col-md-12">
-                            <button type="submit" class="btn btn-success">
+                            <button type="submit" class="btn btn-primary">
                                 {{ __('Tambah Data Guru') }}
                             </button>
                         </div>

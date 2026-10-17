@@ -14,7 +14,7 @@
                         name="name_stage" value="{{ old('name', $stage->name_stage) }}" required autocomplete="name_stage"
                         autofocus>
                 </div>
-                <button type="submit" class="btn btn-success"> simpan data </button>
+                <button type="submit" class="btn btn-primary"> simpan data </button>
             </form>
         </div>
     </div>

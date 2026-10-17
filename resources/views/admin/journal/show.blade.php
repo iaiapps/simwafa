@@ -3,7 +3,7 @@
 @section('title', 'Detail Jurnal')
 
 @section('content')
-    <a href="{{ url()->previous() }}" class="btn btn-primary mb-3">kembali</a>
+    <a href="{{ url()->previous() }}" class="btn btn-outline-secondary mb-3">Kembali</a>
     <div class="card p-3">
         @if ($journals->isEmpty())
             <div>

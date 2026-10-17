@@ -11,7 +11,7 @@
         <i class="bi bi-plus-circle"></i> Tambah komponen
     </button>
 
-    <div class="card rounded p-3">
+    <div class="card p-3">
         <div class="table-responsive">
             <table id="table" class="table">
                 <thead>
@@ -28,7 +28,7 @@
                             <td>{{ $komponen->name_komp }}</td>
                             <td>
                                 <a href="{{ route('komponen.edit', $komponen->id) }}"
-                                    class="btn btn-warning btn-sm">edit</a>
+                                    class="btn btn-outline-secondary btn-sm">Edit</a>
 
                                 {{-- <button type="button" class="btn btn-warning btn-sm" data-bs-toggle="modal"
                                     data-bs-target="#editKomponen{{ $komponen->id }}"> edit </button> --}}
@@ -37,7 +37,7 @@
                                     class="d-inline" onsubmit="return confirm('Apakah anda yakin untuk menghapus data ?');">
                                     @csrf
                                     @method('DELETE')
-                                    <button type="submit" class="btn btn-danger btn-sm">delete</button>
+                                    <button type="submit" class="btn btn-outline-danger btn-sm">Hapus</button>
                                 </form>
                             </td>
                         </tr>

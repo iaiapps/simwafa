@@ -10,21 +10,24 @@
 
     <title>@yield('title') | {{ config('app.name', 'Laravel') }}</title>
 
-    <!-- Fonts -->
-    {{-- <link rel="dns-prefetch" href="//fonts.bunny.net"> --}}
-    {{-- <link href="https://fonts.bunny.net/css?family=Nunito" rel="stylesheet"> --}}
+    <!-- Favicon -->
+    <link rel="icon" type="image/png" sizes="16x16" href="{{ asset('img/grades.png') }}">
 
-    <link rel="stylesheet" href="{{ asset('css/app.css') }}">
+    <!-- Fonts (Nunito display, Inter body, Geist Mono angka) -->
+    <link rel="preconnect" href="https://fonts.bunny.net">
+    <link href="https://fonts.bunny.net/css?family=inter:400,500,600,700|nunito:700,800|geist-mono:400,500"
+        rel="stylesheet">
+
     <!-- Scripts -->
     @vite(['resources/sass/app.scss', 'resources/js/app.js'])
     @stack('css')
 </head>
 
 <body>
-    <div id="app">
+    <div id="app" class="login-page">
         @yield('content')
-        </main>
     </div>
+
     @stack('scripts')
 </body>
 

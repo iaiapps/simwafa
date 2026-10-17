@@ -24,8 +24,8 @@
                             <td class="text-center">{{ $teacher->journal->count() }}</td>
 
                             <td>
-                                <a href="{{ route('journal.show', $teacher->id) }}" class="btn btn-primary btn-sm">lihat
-                                    jurnal</a>
+                                <a href="{{ route('journal.show', $teacher->id) }}" class="btn btn-ghost btn-sm">Lihat
+                                    Jurnal</a>
                             </td>
                         </tr>
                     @empty
